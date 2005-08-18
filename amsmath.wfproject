@@ -1,0 +1,14 @@
+name: AMSDOC
+files: /home/users/kyanh/tex/doc/amsmath/amsldoc.tex
+basedir: /home/kyanh/tex/doc/amsmath/
+basefile: amsldoc.tex
+template: 
+view_bars: 16
+word_wrap: 0
+recent_files: /home/users/kyanh/tex/doc/amsmath/amsldoc.tex
+recent_files: /home/kyanh/tex/doc/amsmath/test.tex
+recent_files: /home/kyanh/tex/doc/amsmath/subeqn.tex
+recent_files: /home/kyanh/tex/doc/amsmath/amsldoc.tex
+recent_files: /home/kyanh/tex/doc/amsmath/testmath.tex
+opendir: /home/users/kyanh/tex/doc/amsmath
+savedir: /home/kyanh/tex/doc/amsmath
