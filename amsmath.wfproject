@@ -1,14 +1,23 @@
 name: AMSDOC
-files: /home/users/kyanh/tex/doc/amsmath/amsldoc.tex
+files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc.tex
+files: /home/users/kyanh/tex/doc/amsmath-doc-vi/TODO
+files: /home/users/kyanh/tex/doc/amsmath-doc-vi/README
+files: /home/users/kyanh/tex/doc/amsmath-doc-vi/PRINT_NOTE
+files: /home/users/kyanh/tex/doc/amsmath-doc-vi/Makefile
 basedir: /home/kyanh/tex/doc/amsmath/
 basefile: amsldoc.tex
 template: 
-view_bars: 16
+view_bars: 144
 word_wrap: 0
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc.tex
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/TODO
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/README
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/PRINT_NOTE
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/Makefile
 recent_files: /home/users/kyanh/tex/doc/amsmath/amsldoc.tex
 recent_files: /home/kyanh/tex/doc/amsmath/test.tex
 recent_files: /home/kyanh/tex/doc/amsmath/subeqn.tex
 recent_files: /home/kyanh/tex/doc/amsmath/amsldoc.tex
 recent_files: /home/kyanh/tex/doc/amsmath/testmath.tex
-opendir: /home/users/kyanh/tex/doc/amsmath
-savedir: /home/kyanh/tex/doc/amsmath
+opendir: /home/users/kyanh/tex/doc/amsmath-doc-vi
+savedir: /home/users/kyanh/tex/doc/amsmath-doc-vi
