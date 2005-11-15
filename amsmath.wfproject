@@ -1,19 +1,25 @@
 name: AMSDOC
+files: /home/users/kyanh/tex/doc/amsmath-doc-vi/header.tex
+files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi/src/amsldoc-vi.tex
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc.tex
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/TODO
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/README
-files: /home/users/kyanh/tex/doc/amsmath-doc-vi/PRINT_NOTE
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/Makefile
-basedir: /home/kyanh/tex/doc/amsmath/
+basedir: /home/users/kyanh/tex/doc/amsmath-doc-vi/
 basefile: amsldoc.tex
 template: 
 view_bars: 144
 word_wrap: 0
+searchlist: \see
+searchlist: bổ sung của ccc
+searchlist: bổ sung
+searchlist: \pagestyle
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi/src/amsldoc-vi.tex
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc.tex
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/TODO
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/README
-recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/PRINT_NOTE
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/Makefile
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/PRINT_NOTE
 recent_files: /home/users/kyanh/tex/doc/amsmath/amsldoc.tex
 recent_files: /home/kyanh/tex/doc/amsmath/test.tex
 recent_files: /home/kyanh/tex/doc/amsmath/subeqn.tex
