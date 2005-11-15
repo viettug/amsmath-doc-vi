@@ -1,0 +1,307 @@
+\newif\ifpdf
+\ifx\pdfoutput\undefined\relax\else\ifnum\pdfoutput>0\relax\pdftrue\fi\fi
+
+\ifx\printversion\undefined
+	\documentclass[11pt,leqno,titlepage,openany,oneside]{amsldoc}[1999/12/13]
+\else
+	\documentclass[a4paper,11pt,leqno,titlepage,openany]{amsldoc}[1999/12/13]
+	\usepackage[monochrome]{color}
+	\advance \topmargin by -3\baselineskip
+	\advance \textheight by 5\baselineskip
+	\usepackage{lmodern}
+\fi
+
+% =====================================================================
+
+\usepackage[utf8x]{vietnam}
+\usepackage{amsxtra}
+\usepackage{shortvrb}
+\usepackage{afterpage}
+\usepackage{amsfonts,euscript}
+\usepackage{ifthen}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage{indentfirst}
+\usepackage[left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\IfFileExists{/home/users/kyanh/.is.m0nster.}%
+{\usepackage{ktv-buildnum}}%
+{\newcount\buildnum \buildnum=9999}
+
+% =====================================================================
+
+\MakeShortVerb{|}
+
+% =====================================================================
+
+\makeatletter
+	\def\ps@empty{\let\@mkboth\@gobbletwo
+	  \let\@oddhead\@empty \let\@evenhead\@empty
+	  \let\@oddfoot\@empty
+	  \let\@evenfoot\@empty
+	  \global\topskip\normaltopskip}
+	\def\ps@plain{\ps@empty
+	  \def\@oddfoot{\normalfont\scriptsize \hfil\thepage\hfil}%
+	  \let\@evenfoot\@oddfoot}
+	%\newswitch{runhead}
+	\def\ps@headings{\ps@empty
+	  \def\@oddfoot{}
+	  \def\@evenhead{%
+	    \normalfont\small\thepage\hfil
+	    \leftmark{}{}}%
+	  \def\@oddhead{%
+	    \normalfont\small
+	    \rightmark{}{}\hfil \llap{\thepage}}%
+	%%%  \let\@evenhead\@oddhead
+	  \let\@mkboth\markboth
+	  \def\partmark{\@secmark\markboth\partrunhead\partname}%
+	  \def\chaptermark{%
+	    \@secmark\markboth\chapterrunhead{}}%
+	  \def\sectionmark{%
+	    \@secmark\markright\sectionrunhead\sectionname}%
+	}
+	\let\sectionname\@empty
+	\let\subsectionname\@empty
+	\let\subsubsectionname\@empty
+	\let\paragraphname\@empty
+	\let\subparagraphname\@empty
+	\def\leftmark{\expandafter\@firstoftwo\topmark{}{}}
+	\def\rightmark{\expandafter\@secondoftwo\botmark{}{}}
+	\long\def\@nilgobble#1\@nil{}
+	\def\@secmark#1#2#3#4{%
+	  \begingroup \let\protect\@unexpandable@protect
+	  \edef\@tempa{\endgroup \toks@{\protect#2{#3}{\@secnumber}}}%
+	  \@tempa
+	  \toks@\@xp{\the\toks@{#4}}%
+	  \afterassignment\@nilgobble\@temptokena\@themark{}\@nil
+	  \edef\@tempa{\@nx\@mkboth{%
+	    \ifx\markright#1\the\@temptokena\else\the\toks@\fi}{\the\toks@}}%
+	  \@tempa}
+	\let\@secnumber\@empty
+	\def\markboth#1#2{%
+	  \begingroup
+	    \@temptokena{{#1}{#2}}\xdef\@themark{\the\@temptokena}%
+	    \mark{\the\@temptokena}%
+	  \endgroup
+	  \if@nobreak\ifvmode\nobreak\fi\fi}
+	\newskip\normaltopskip
+	\normaltopskip=10pt \relax
+	\let\sectionmark\@gobble
+	\let\subsectionmark\@gobble
+	\let\subsubsectionmark\@gobble
+	\let\paragraphmark\@gobble
+	
+	\def\partrunhead#1#2#3{%
+	  \@ifnotempty{#2}{\textsc{\ignorespaces#1 #2\unskip}\@ifnotempty{#3}{. }}%
+	  \def\@tempa{#3}%
+	  \ifx\@empty\@tempa\else
+	    \begingroup \def\\{ \ignorespaces}% defend against questionable usage
+	%    \MakeUppercase{\@tempa}
+	    \textsc{\@tempa}
+	    \endgroup
+	  \fi
+	}
+	\let\chapterrunhead\partrunhead
+	\let\sectionrunhead\partrunhead
+\makeatother
+% ----------------------------------------------------------------------
+
+\newcommand{\entrylabel}[1]{\mbox{\textsf{#1:}}\hfil}
+\newenvironment{entry}%
+        {\begin{list}{}%
+                {\renewcommand{\makelabel}{\entrylabel}%
+                \setlength{\labelwidth}{100pt}%
+                \setlength{\leftmargin}{\labelwidth}
+                \addtolength{\leftmargin}{\labelsep}%
+                }%
+        }%
+        {\end{list}}
+
+\newlength{\mylen}
+\newcommand{\lentrylabel}[1]{%
+        \settowidth{\mylen}{\textsf{#1:}}%
+        \ifthenelse{\lengthtest{\mylen >\labelwidth}}%
+                {\parbox[b]{\labelwidth}%
+                        {\makebox[0pt][l]{\textsf{#1\space:}}\\}}%
+                {\hfil\textsf{#1\space:}}%
+                \relax}
+\newenvironment{lentry}%
+        {\renewcommand{\entrylabel}{\lentrylabel}%
+        \begin{entry}}%
+        {\end{entry}}
+
+% ----------------------------------------------------------------------
+
+\makeatletter
+	\renewenvironment{thebibliography}[1]
+	     {\chapter*{\bibname}%
+	      \@mkboth{\textsc{\bibname}}{\textsc{\bibname}}%
+	      \list{\@biblabel{\@arabic\c@enumiv}}%
+	           {\settowidth\labelwidth{\@biblabel{#1}}%
+	            \leftmargin\labelwidth
+	            \advance\leftmargin\labelsep
+	            \@openbib@code
+	            \usecounter{enumiv}%
+	            \let\p@enumiv\@empty
+	            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+	      \sloppy
+	      \clubpenalty4000
+	      \@clubpenalty \clubpenalty
+	      \widowpenalty4000%
+	      \sfcode`\.\@m}
+	     {\def\@noitemerr
+	       {\@latex@warning{Empty `thebibliography' environment}}%
+	      \endlist}
+\makeatother
+
+% =====================================================================
+
+\providecommand{\see}[2]{\textit{see} #1}
+
+\hyphenation{ac-cent-ed-sym-bol add-to-counter add-to-length align-at
+  aligned-at allow-dis-play-breaks ams-art ams-cd ams-la-tex amsl-doc
+  ams-symb ams-tex ams-text ams-xtra bmatrix bold-sym-bol cen-ter-tags
+  eqn-ar-ray idots-int int-lim-its latex med-space neg-med-space
+  neg-thick-space neg-thin-space no-int-lim-its no-name-lim-its
+  over-left-arrow over-left-right-arrow over-right-arrow pmatrix
+  qed-sym-bol set-length side-set small-er tbinom the-equa-tion
+  thick-space thin-space un-der-left-arrow un-der-left-right-arrow
+  un-der-right-arrow use-pack-age var-inj-lim var-proj-lim vmatrix
+  xalign-at xx-align-at}
+
+% =====================================================================
+
+%    Prepare for illustrating the \vec example
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\booktitle}[1]{\textit{#1}}
+\newcommand{\journalname}[1]{\textit{#1}}
+\newcommand{\seriesname}[1]{\textit{#1}}
+
+%    Command to insert and index a particular phrase. Doesn't work for
+%    certain kinds of special characters in the argument.
+\newcommand{\ii}[1]{#1\index{#1}}
+\newcommand{\vstrut}[1]{\vrule width0pt height#1\relax}
+
+%    An environment for presenting comprehensive address information:
+\newenvironment{infoaddress}{%
+  \par\topsep\medskipamount
+  \trivlist\centering
+  \item[]%
+  \begin{minipage}{.7\columnwidth}%
+  \raggedright
+}{%
+  \end{minipage}%
+  \endtrivlist
+}
+
+\newenvironment{eqxample}{%
+  \par\addvspace\medskipamount
+  \noindent\begin{minipage}{.5\columnwidth}%
+  \def\producing{\end{minipage}\begin{minipage}{.5\columnwidth}%
+    \hbox\bgroup\kern-.2pt\vrule width.2pt%
+      \vbox\bgroup\parindent0pt\relax
+%    The 3pt is to cancel the -\lineskip from \displ@y
+    \abovedisplayskip3pt \abovedisplayshortskip\abovedisplayskip
+    \belowdisplayskip0pt \belowdisplayshortskip\belowdisplayskip
+    \noindent}
+}{%
+  \par
+%    Ensure that a lonely \[\] structure doesn't take up width less than
+%    \hsize.
+  \hrule height0pt width\hsize
+  \egroup\vrule width.2pt\kern-.2pt\egroup
+  \end{minipage}%
+  \par\addvspace\medskipamount
+}
+
+%    The chapters are so short, perhaps we shouldn't call them by the
+%    name `Chapter'. We make \chaptername read an argument in order to
+%    remove a following \space or "{} " (both possibilities are present
+%    in book.cls).
+
+\renewcommand{\chaptername}[1]{}
+\newcommand{\chapnum}[1]{\mdash #1\mdash }
+
+\makeatletter
+	\def\@makechapterhead#1{%
+	  \vspace{1.5\baselineskip}%
+	  {\parindent \z@ \raggedright \reset@font
+	    \ifnum \c@secnumdepth >\m@ne
+	      \large\bfseries \chapnum{\thechapter}%
+	      \par\nobreak
+	      \vskip.5\baselineskip\relax
+	    \fi
+	    #1\par\nobreak
+	    \vskip\baselineskip
+	  }}
+\makeatother
+
+%    A command for ragged-right parbox in a tabular.
+\newcommand{\rp}{\let\PBS\\\raggedright\let\\\PBS}
+
+%    Non-indexed file name
+\newcommand{\nfn}[1]{\texttt{#1}}
+
+%    For the examples in the math spacing table.
+%%\newcommand{\lspx}{\mbox{\rule{5pt}{.6pt}\rule{.6pt}{6pt}}}
+%%\newcommand{\rspx}{\mbox{\rule[-1pt]{.6pt}{7pt}%
+%%  \rule[-1pt]{5pt}{.6pt}}}
+\newcommand{\lspx}{\mathord{\Rightarrow\mkern-1mu}}
+\newcommand{\rspx}{\mathord{\mkern-1mu\Leftarrow}}
+\newcommand{\spx}[1]{$\lspx #1\rspx$}
+
+%    For a list of characters representing document input.
+\newcommand{\clist}[1]{%
+  \mbox{\ntt\spaceskip.2em plus.1em \xspaceskip\spaceskip#1}}
+
+%    Fix weird \latex/ definition of rightmark.
+\makeatletter
+	\def\rightmark{\expandafter\@rightmark\botmark{}{}}
+	%    Also turn off section marks.
+	\let\sectionmark\@gobble
+	\renewcommand{\chaptermark}[1]{%
+	%%  \MakeUppercase{\markboth{\rhcn#1}{\rhcn#1}}}
+	  \uppercase{\markboth{\rhcn#1}{\rhcn#1}}}
+	\newcommand{\rhcn}{\thechapter. }
+\makeatother
+
+%    Include down to \section but not \subsection, in toc:
+\setcounter{tocdepth}{1}
+
+% =====================================================================
+
+\DeclareMathOperator{\ix}{ix}
+\DeclareMathOperator{\nul}{nul}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\xxx}{xxx}
+\DeclareMathOperator{\tg}{tg}
+
+% =====================================================================
+
+\ifpdf
+	\usepackage[colorlinks,draft=false,
+		pdftitle={AMSLaTeX Manual, v2.0, Vietnamese edition},
+		pdfauthor={American Mathematical Society, Translator:kyanh<kyanh@o2.pl>},
+		pdfsubject={Advanced Math Typesetting},
+		pdfkeywords={math, typesetting, formulas}]{hyperref}
+	\input pd1supp.def
+\fi
+
+\ifx\printversion\undefined\relax
+	\ifpdf
+		\RequirePackage{thumbpdf}
+		\hypersetup{pdfpagemode=UseThumbs}
+	\fi
+\fi
+
+\ifpdf
+	\hypersetup{plainpages=false}
+	\hypersetup{pdfpagelabels=false}
+	%\hypersetup{hypertexnames=true}
+	\hypersetup{naturalnames=true}
+\fi
+
+% =====================================================================
+
+\def\errexa{\par\vskip2mm\noindent\textit{Ví dụ:}\par\noindent}
+\def\errexpl{\par\vskip2mm\noindent\textit{Giải thích:}\par\noindent}
+\endinput
