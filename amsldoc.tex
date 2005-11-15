@@ -1,309 +1,43 @@
-\documentclass[11pt,leqno,titlepage,openany]{amsldoc}[1999/12/13]
-
-% \ifx\UndEfiNed\url
-%   \ClassError{amsldoc}{%
-%     This version of amsldoc.tex must be processed\MessageBreak
-%     with a newer version of amsldoc.cls (2.02 or later)}{}
-% \fi
-
-% ----------------------------------------------------------------------
-\usepackage[top=25mm,bottom=20mm]{geometry}
-\usepackage[utf8x]{vietnam}
-\usepackage{ktv-buildnum}
-\usepackage{ccc-arrows}
-%\usepackage{indentfirst}
-\usepackage{amsxtra}
-\usepackage{shortvrb}
-\usepackage{ifthen}
-\usepackage{color}
-\usepackage{amsfonts,euscript}
-% ----------------------------------------------------------------------
-
-\MakeShortVerb{|}
-% hack \url
-% cannot use package hyperref. Donknow why?
-\makeatletter
-\let\old@url=\url
-\def\url#1{\textcolor{blue}{\old@url{#1}}}
-\makeatother
-
-% ----------------------------------------------------------------------
-
-\DeclareMathOperator{\tg}{tg}
-
-
-% ----------------------------------------------------------------------
-
-
-\newcommand{\entrylabel}[1]{\mbox{\textsf{#1:}}\hfil}
-\newenvironment{entry}%
-	{\begin{list}{}%
-		{\renewcommand{\makelabel}{\entrylabel}%
-		\setlength{\labelwidth}{100pt}%
-		\setlength{\leftmargin}{\labelwidth}
-		\addtolength{\leftmargin}{\labelsep}%
-		}%
-	}%
-	{\end{list}}
-
-\newlength{\mylen}
-\newcommand{\lentrylabel}[1]{%
-	\settowidth{\mylen}{\textsf{#1:}}%
-	\ifthenelse{\lengthtest{\mylen >\labelwidth}}%
-		{\parbox[b]{\labelwidth}%
-			{\makebox[0pt][l]{\textsf{#1\space:}}\\}}%
-		{\hfil\textsf{#1\space:}}%
-		\relax}
-\newenvironment{lentry}%
-	{\renewcommand{\entrylabel}{\lentrylabel}%
-	\begin{entry}}%
-	{\end{entry}}
-
-% ----------------------------------------------------------------------
-% :: hack heading
-
-\makeatletter
-\def\ps@empty{\let\@mkboth\@gobbletwo
-  \let\@oddhead\@empty \let\@evenhead\@empty
-  \let\@oddfoot\@empty
-  \let\@evenfoot\@empty
-  \global\topskip\normaltopskip}
-\def\ps@plain{\ps@empty
-  \def\@oddfoot{\normalfont\scriptsize \hfil\thepage\hfil}%
-  \let\@evenfoot\@oddfoot}
-%\newswitch{runhead}
-\def\ps@headings{\ps@empty
-  \def\@oddfoot{\hfil VietTUG (\url{http://www.viettug.org/})\hfil}
-  \def\@evenhead{%
-    \normalfont\small%\scriptsize
-    \hfil\thesection.
-    \leftmark{}{}\hfil \llap{\thepage}}%
-  \def\@oddhead{%
-    \normalfont\small%\scriptsize
-    \hfil\thesection.
-    \rightmark{}{}\hfil \llap{\thepage}}%
-  \let\@evenhead\@oddhead
-  \let\@mkboth\markboth
-  \def\partmark{\@secmark\markboth\partrunhead\partname}%
-  \def\chaptermark{%
-    \@secmark\markboth\chapterrunhead{}}%
-  \def\sectionmark{%
-    \@secmark\markright\sectionrunhead\sectionname}%
-}
-\let\sectionname\@empty
-\let\subsectionname\@empty
-\let\subsubsectionname\@empty
-\let\paragraphname\@empty
-\let\subparagraphname\@empty
-\def\leftmark{\expandafter\@firstoftwo\topmark{}{}}
-\def\rightmark{\expandafter\@secondoftwo\botmark{}{}}
-\long\def\@nilgobble#1\@nil{}
-\def\@secmark#1#2#3#4{%
-  \begingroup \let\protect\@unexpandable@protect
-  \edef\@tempa{\endgroup \toks@{\protect#2{#3}{\@secnumber}}}%
-  \@tempa
-  \toks@\@xp{\the\toks@{#4}}%
-  \afterassignment\@nilgobble\@temptokena\@themark{}\@nil
-  \edef\@tempa{\@nx\@mkboth{%
-    \ifx\markright#1\the\@temptokena\else\the\toks@\fi}{\the\toks@}}%
-  \@tempa}
-\let\@secnumber\@empty
-\def\markboth#1#2{%
-  \begingroup
-    \@temptokena{{#1}{#2}}\xdef\@themark{\the\@temptokena}%
-    \mark{\the\@temptokena}%
-  \endgroup
-  \if@nobreak\ifvmode\nobreak\fi\fi}
-\newskip\normaltopskip
-\normaltopskip=10pt \relax
-\let\sectionmark\@gobble
-\let\subsectionmark\@gobble
-\let\subsubsectionmark\@gobble
-\let\paragraphmark\@gobble
-
-\def\partrunhead#1#2#3{%
-  \@ifnotempty{#2}{\uppercase{\ignorespaces#1 #2\unskip}\@ifnotempty{#3}{. }}%
-  \def\@tempa{#3}%
-  \ifx\@empty\@tempa\else
-    \begingroup \def\\{ \ignorespaces}% defend against questionable usage
-    \MakeUppercase{\@tempa}
-    \endgroup
-  \fi
-}
-\let\chapterrunhead\partrunhead
-\let\sectionrunhead\partrunhead
-
-\makeatother
-% ----------------------------------------------------------------------
-
-% :: title
-%\title{User's Guide for the \pkg{amsmath} Package (Version~2.0)}
-\title{Hướng dẫn sử dụng gói \pkg{amsmath} (phiên bản 2.0)}
-%\author{American Mathematical Society}
-\author{%
-	\emph{Tác giả:} Hội Toán học Mỹ (AMS)
-	\\\medskip
-	\emph{Biên dịch: %
-		%{\bf ccc} (\url{http://vntex.sarovar.org/authors/ccc/})}
-		{\sl kyanh}} (\url{mailto:kyanh@o2.pl})}
-\date{%
-	1999/12/13 - 2004/11/03\\
-	\medskip \emph{Bản dịch số {$\mathbf{\the\buildnum}$}}}
-
-%    Use the amsmath package and amscd package in order to print
-%    examples.
-\usepackage{amsmath}
-\usepackage{amscd}
-\usepackage{hyperref}
-
-\makeindex % generate index data
-\providecommand{\see}[2]{\textit{see} #1}
-
-%    The amsldoc class includes a number of features useful for
-%    documentation about TeX, including:
-%
-%    ---Commands \tex/, \amstex/, \latex/, ... for uniform treatment
-%    of the various logos and easy handling of following spaces.
-%
-%    ---Commands for printing various common elements: \cn for command
-%    names, \fn for file names (including font-file names), \env for
-%    environments, \pkg and \cls for packages and classes, etc.
-
-%    Many of the command names used here are rather long and will
-%    contribute to poor linebreaking if we follow the \latex/ practice
-%    of not hyphenating anything set in tt font; instead we selectively
-%    allow some hyphenation.
-%\allowtthyphens % defined in amsldoc.cls
-
-\hyphenation{ac-cent-ed-sym-bol add-to-counter add-to-length align-at
-  aligned-at allow-dis-play-breaks ams-art ams-cd ams-la-tex amsl-doc
-  ams-symb ams-tex ams-text ams-xtra bmatrix bold-sym-bol cen-ter-tags
-  eqn-ar-ray idots-int int-lim-its latex med-space neg-med-space
-  neg-thick-space neg-thin-space no-int-lim-its no-name-lim-its
-  over-left-arrow over-left-right-arrow over-right-arrow pmatrix
-  qed-sym-bol set-length side-set small-er tbinom the-equa-tion
-  thick-space thin-space un-der-left-arrow un-der-left-right-arrow
-  un-der-right-arrow use-pack-age var-inj-lim var-proj-lim vmatrix
-  xalign-at xx-align-at}
-
-%    Prepare for illustrating the \vec example
-\newcommand{\vect}[1]{\mathbf{#1}}
-
-\newcommand{\booktitle}[1]{\textit{#1}}
-\newcommand{\journalname}[1]{\textit{#1}}
-\newcommand{\seriesname}[1]{\textit{#1}}
-
-%    Command to insert and index a particular phrase. Doesn't work for
-%    certain kinds of special characters in the argument.
-\newcommand{\ii}[1]{#1\index{#1}}
-
-\newcommand{\vstrut}[1]{\vrule width0pt height#1\relax}
-
-%    An environment for presenting comprehensive address information:
-\newenvironment{infoaddress}{%
-  \par\topsep\medskipamount
-  \trivlist\centering
-  \item[]%
-  \begin{minipage}{.7\columnwidth}%
-  \raggedright
-}{%
-  \end{minipage}%
-  \endtrivlist
-}
-
-\newenvironment{eqxample}{%
-  \par\addvspace\medskipamount
-  \noindent\begin{minipage}{.5\columnwidth}%
-  \def\producing{\end{minipage}\begin{minipage}{.5\columnwidth}%
-    \hbox\bgroup\kern-.2pt\vrule width.2pt%
-      \vbox\bgroup\parindent0pt\relax
-%    The 3pt is to cancel the -\lineskip from \displ@y
-    \abovedisplayskip3pt \abovedisplayshortskip\abovedisplayskip
-    \belowdisplayskip0pt \belowdisplayshortskip\belowdisplayskip
-    \noindent}
-}{%
-  \par
-%    Ensure that a lonely \[\] structure doesn't take up width less than
-%    \hsize.
-  \hrule height0pt width\hsize
-  \egroup\vrule width.2pt\kern-.2pt\egroup
-  \end{minipage}%
-  \par\addvspace\medskipamount
-}
-
-%    The chapters are so short, perhaps we shouldn't call them by the
-%    name `Chapter'. We make \chaptername read an argument in order to
-%    remove a following \space or "{} " (both possibilities are present
-%    in book.cls).
-
-\renewcommand{\chaptername}[1]{}
-\newcommand{\chapnum}[1]{\mdash #1\mdash }
-\makeatletter
-\def\@makechapterhead#1{%
-  \vspace{1.5\baselineskip}%
-  {\parindent \z@ \raggedright \reset@font
-    \ifnum \c@secnumdepth >\m@ne
-      \large\bfseries \chapnum{\thechapter}%
-      \par\nobreak
-      \vskip.5\baselineskip\relax
-    \fi
-    #1\par\nobreak
-    \vskip\baselineskip
-  }}
-\makeatother
-
-%    A command for ragged-right parbox in a tabular.
-\newcommand{\rp}{\let\PBS\\\raggedright\let\\\PBS}
-
-%    Non-indexed file name
-\newcommand{\nfn}[1]{\texttt{#1}}
-
-%    For the examples in the math spacing table.
-%%\newcommand{\lspx}{\mbox{\rule{5pt}{.6pt}\rule{.6pt}{6pt}}}
-%%\newcommand{\rspx}{\mbox{\rule[-1pt]{.6pt}{7pt}%
-%%  \rule[-1pt]{5pt}{.6pt}}}
-\newcommand{\lspx}{\mathord{\Rightarrow\mkern-1mu}}
-\newcommand{\rspx}{\mathord{\mkern-1mu\Leftarrow}}
-\newcommand{\spx}[1]{$\lspx #1\rspx$}
-
-%    For a list of characters representing document input.
-\newcommand{\clist}[1]{%
-  \mbox{\ntt\spaceskip.2em plus.1em \xspaceskip\spaceskip#1}}
-
-%    Fix weird \latex/ definition of rightmark.
-\makeatletter
-\def\rightmark{\expandafter\@rightmark\botmark{}{}}
-%    Also turn off section marks.
-\let\sectionmark\@gobble
-\renewcommand{\chaptermark}[1]{%
-  \MakeUppercase{\markboth{\rhcn#1}{\rhcn#1}}}
-\newcommand{\rhcn}{\thechapter. }
-\makeatother
-
-%    Include down to \section but not \subsection, in toc:
-\setcounter{tocdepth}{1}
-
-\DeclareMathOperator{\ix}{ix}
-\DeclareMathOperator{\nul}{nul}
-\DeclareMathOperator{\End}{End}
-\DeclareMathOperator{\xxx}{xxx}
+\input header.tex
 
 \begin{document}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\frontmatter
+% ----------------------------------------------------------------------
 
-\maketitle
-\thispagestyle{empty}
-\rightline{\emph{The only way to learn mathematics is to do mathematics.}}
-\medskip
-\rightline{{\rm P. R. HALMOS}}
-\newpage
-\pagestyle{headings}
+\pagestyle{empty}
+
+\begingroup
+	\IfFileExists{/home/users/kyanh/.is.m0nster.}%
+	{\font\mysign=vnrsc1440\relax\font\ftitle=vnrsc2074}%
+	{\font\mysign=vnbx12\relax\font\ftitle=vnbx12 at 17pt}
+	\null
+	\vskip6cm
+	\centerline{\ftitle Hướng dẫn sử dụng gói `amsmath 2.0'}
+	\vskip30mm
+	\centerline{\mysign	Tác giả: Hội Toán học Mỹ (AMS)}
+	\vskip3mm
+	\centerline{\mysign Người dịch: Kỳ Anh $\langle${kyanh@o2.pl}$\rangle$}
+	\vskip25mm
+	\centerline{\Large Bản dịch số
+		{\mysign\the\buildnum\ -- \the\year/\the\month/\the\day}}
+	\vfill
+	\centerline{\LARGE\url{http://www.viettug.org/}}
+\endgroup
+
+% =====================================================================
+
+\ifx\printversion\undefined
+	\newpage
+\else
+	\cleardoublepage
+\fi
+
 \tableofcontents
+
 \cleardoublepage % for better page number placement
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %\mainmatter
 
 \chapter{Thuật ngữ}
@@ -312,25 +46,25 @@ Dưới đây là một số thuật ngữ dùng trong tài liệu này.
 
 \medskip
 \begin{lentry}
-\item[dimension] độ dài trong \latex/, ví dụ: |6pt|, |-2pc|, |5mm|,...
+\item[dimension] độ dài trong \LaTeX{}, ví dụ: |6pt|, |-2pc|, |5mm|,...
 \item[font]kiểu chữ
 \item[hyphen]tách một chữ (ở cuối dòng) với nhiều ký tự thành các phần nhỏ
 	ngăn cách bởi dấu gạch ngang (dấu |hyphen|).
 	Việc tách này giúp cho một chữ quá dài không tràn ra khỏi dòng.
 \item[number] \emph{bla bla bla\ldots}
-\item[preamble] phần nằm trước |\begin{document}| của tập tin nguồn \latex/.
+\item[preamble] phần nằm trước |\begin{document}| của tập tin nguồn \LaTeX{}.
 \item[tag] chỉ số phương trình
 \item[robust]\emph{bla bla bla\ldots}
-\item[text] chuỗi các mã nguồn \latex/, ví dụ: "|xem Tiên đề~\ref{ax:1}|"
-\item[typeset] sắp chữ nhờ \latex/
-%	biên dịch tài liệu \latex/ nhờ chương trình |latex|, |pdflatex|,...
+\item[text] chuỗi các mã nguồn \LaTeX{}, ví dụ: "|xem Tiên đề~\ref{ax:1}|"
+\item[typeset] sắp chữ nhờ \LaTeX{}
+%	biên dịch tài liệu \LaTeX{} nhờ chương trình |latex|, |pdflatex|,...
 \item[wrap] tự động chia một dòng quá dài thành nhiều dòng nhỏ, để chúng
 	bố trí vừa trên một chiều rộng cố định cho trước
 \item[canh cột]bố trí các phần của phương trình theo cột (chiều đứng)
 \item[dấu ngoặc](phân cách); thuật ngữ tiếng Anh là |delimiter|; là các dấu
 	(,),[,],\{,\},$\vert$,...
 \item[chỉ số phương trình]nhãn dùng để phân biệt các phương trình
-\item[phương trình] biểu thức toán học bất kỳ được biểu diễn nhờ \latex/
+\item[phương trình] biểu thức toán học bất kỳ được biểu diễn nhờ \LaTeX{}
 \item[v-khoảng cách] khoảng cách theo chiều đứng
 \end{lentry}
 
@@ -384,11 +118,11 @@ và
 \medskip
 \rightline{\url{http://www.ams.org/tex/author-info.html}}
 
-% If you are a long-time \latex/ user and have lots of mathematics in what
+% If you are a long-time \LaTeX{} user and have lots of mathematics in what
 % you write, then you may recognize solutions for some familiar problems
 % in this list of \pkg{amsmath} features:
 \bigskip
-Nếu bạn đã làm việc lâu dài với \latex/ và phải |typeset| rất nhiều các biểu thức
+Nếu bạn đã làm việc lâu dài với \LaTeX{} và phải |typeset| rất nhiều các biểu thức
 toán học, thì với gói \pkg{amsmath}, bạn có thể tìm thấy giải pháp
 cho những vấn đề hay gặp nhất:
 
@@ -612,9 +346,9 @@ khi nạp gói bằng \cn{usepackage}|{amsmath}|:
 % The \pkg{amsmath} package provides a number of additional displayed
 % equation structures\index{displayed
 %   equations}\index{equations|see{displayed equations}} beyond the ones
-% provided in basic \latex/. The augmented set includes:
+% provided in basic \LaTeX{}. The augmented set includes:
 Gói \pkg{amsmath} cung cấp thêm các môi trường biểu diễn phương trình sau
-đây, bên cạnh các môi trường chuẩn của \latex/:
+đây, bên cạnh các môi trường chuẩn của \LaTeX{}:
 \begin{verbatim}
   equation     equation*     align       align*
   gather       gather*       flalign     flalign*
@@ -630,10 +364,10 @@ nên dùng môi trường \env{align} hoặc tổ hợp \env{equation}+\env{spli
 
 % Except for \env{split}, each environment has both starred and unstarred
 % forms, where the unstarred forms have automatic numbering using
-% \latex/'s \env{equation} counter.
+% \LaTeX{}'s \env{equation} counter.
 Ngoại trừ \env{split}, mỗi môi trường đều có hai dạng:
 \emph{có sao (*)} và \emph{không sao};
-các môi trường không sao sẽ sử dụng bộ đếm \env{equation} của \latex/
+các môi trường không sao sẽ sử dụng bộ đếm \env{equation} của \LaTeX{}
 để đánh số các phương trình một cách tự động (do đó, ta gọi
 chúng là \emph{môi trường có đánh số}).
 % You can suppress the number on any
@@ -825,10 +559,10 @@ Môi trường \env{equation} dùng biểu diễn phương trình đơn
 và tự động đánh số cho phương trình đó. Môi trường \env{equation*}
 có tác dụng tương tự, nhưng không đánh số.%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \footnote{Basic \latex/ doesn't provide an \env{equation*} environment,
+% \footnote{Basic \LaTeX{} doesn't provide an \env{equation*} environment,
 % but rather a functionally equivalent environment named
 % \env{displaymath}.}
-\footnote{\latex/ chuẩn không có môi trường \env{equation*}, mà
+\footnote{\LaTeX{} chuẩn không có môi trường \env{equation*}, mà
 chỉ có dạng tương đương là \env{displaymath}.}
 
 \medskip
@@ -893,10 +627,10 @@ Các lệnh này sẽ nhận cả dòng cần dịch chuyển làm tham số
 \end{multline}
 \end{verbatim}
 
-% The value of \cn{multlinegap} can be changed with the usual \latex/
+% The value of \cn{multlinegap} can be changed with the usual \LaTeX{}
 % commands \cn{setlength} or \cn{addtolength}.
 Giái trị của biến độ dài \cn{multlinegap} có thể thay đổi nhờ các
-lệnh của \latex/ là \cn{setlength} và \cn{addtolength}.
+lệnh của \LaTeX{} là \cn{setlength} và \cn{addtolength}.
 
 %\section{Split equations with alignment}
 \section{Chia nhỏ phương trình và canh cột}
@@ -1164,10 +898,10 @@ lại mỗi khi bạn thay đổi nội dung tài liệu.
 
 % You can use the \cn{\\}|[|\<dimension>|]| command to get extra vertical
 % space between lines in all the \pkg{amsmath} displayed equation
-% environments, as is usual in \latex/. 
+% environments, as is usual in \LaTeX{}. 
 Bạn có thể dùng \cn{\\}|[|\<dimension>|]| để thêm các v-khoảng cách giữa
 các dòng trong mọi môi trường biểu diễn phương trình của gói \pkg{amsmath};
-điều này cũng tương tự trong \latex/.
+điều này cũng tương tự trong \LaTeX{}.
 % When the \pkg{amsmath} package is
 % in use \ii{page breaks} between equation lines are normally disallowed;
 % the philosophy is that page breaks in such material should receive
@@ -1184,14 +918,14 @@ khó theo dõi đối với độc giả.
 Để ngắt trang bên trong phương trình, bạn phải làm bằng tay nhờ lệnh
 \cn{displaybreak}.
 % \cn{displaybreak} is best placed immediately before the
-% \cn{\\} where it is to take effect.  Like \latex/'s \cn{pagebreak},
+% \cn{\\} where it is to take effect.  Like \LaTeX{}'s \cn{pagebreak},
 % \cn{displaybreak} takes an optional argument between 0 and 4 denoting
 % the desirability of the pagebreak. |\displaybreak[0]| means \qq{it is
 %   permissible to break here} without encouraging a break;
 % \cn{displaybreak} with no optional argument is the same as
 % |\displaybreak[4]| and forces a break.
 Nơi đặt \cn{displaybreak} tốt nhất là ngay trước \cn{\\} ở dòng cần ngắt trang.
-Giống như lệnh \cn{pagebreak} của \latex/, lệnh \cn{displaybreak} nhận
+Giống như lệnh \cn{pagebreak} của \LaTeX{}, lệnh \cn{displaybreak} nhận
 tham số bổ sung (tùy chọn) là một trong các số 0, 1, 2, 3, 4;
 tham số này cho biết mức độ ngắt trang. Dùng |\displaybreak[0]| để hàm ý
 \qq{không được ngắt trang ở đây},...; trong khi |\displaybreak|
@@ -1264,15 +998,15 @@ A_3&=\mathcal{N}(\lambda;\omega).
 
 %\subsection{Numbering hierarchy}
 \subsection{Hệ thống chỉ số phương trình}
-% In \latex/ if you wanted to have equations numbered within
+% In \LaTeX{} if you wanted to have equations numbered within
 % sections\mdash that is, have
 % equation numbers (1.1), (1.2), \dots, (2.1), (2.2),
 % \dots, in sections 1, 2, and so forth\mdash you could redefine
-% \cn{theequation} as suggested in the \latex/ manual \cite[\S6.3, \S C.8.4]{lamport}:
-Với \latex/, nếu bạn muốn đánh số phương trình theo mục\mdash
+% \cn{theequation} as suggested in the \LaTeX{} manual \cite[\S6.3, \S C.8.4]{lamport}:
+Với \LaTeX{}, nếu bạn muốn đánh số phương trình theo mục\mdash
 nghĩa là chỉ số phương trình có dạng (1.1), (1.2), \dots, (2.1), (2.2), \dots,
 trong chương 1, 2, v.v...\mdash bạn có thể định nghĩa lại lệnh
-\cn{theequation} như lời khuyên trong sổ tay (manual) \latex/ 
+\cn{theequation} như lời khuyên trong sổ tay (manual) \LaTeX{} 
 \cite[\S6.3, \S C.8.4]{lamport}:
 
 \medskip
@@ -1367,12 +1101,12 @@ và \verb/equation/; các lệnh thay đổi bộ đếm
 \cn{addtocounter}, \cn{setcounter}, \cn{value}, \ldots
 đều có tác dụng bình thường với những bộ đếm đó.
 % To get anything other than lowercase
-% letters for the subordinate numbers, use standard \latex/ methods for
+% letters for the subordinate numbers, use standard \LaTeX{} methods for
 % changing numbering style \cite[\S6.3, \S C.8.4]{lamport}. For example,
 % redefining \cn{theequation} as follows will produce roman numerals.
 Chẳng hạn, các phương trình con được đánh số nhờ chữ cái |alphabet|
 (a,b,c,\ldots); để thay đổi điều này, sử dụng phương pháp chuẩn
-của \latex/ để thay đổi kiểu đánh số (xem trong \cite[\S6.3, \S C.8.4]{lamport}).
+của \LaTeX{} để thay đổi kiểu đánh số (xem trong \cite[\S6.3, \S C.8.4]{lamport}).
 Trong ví dụ dưới đây, các phương trình con sẽ được đánh chỉ số La Mã:
 
 \medskip
@@ -1391,9 +1125,9 @@ Trong ví dụ dưới đây, các phương trình con sẽ được đánh ch�
 
 % The \pkg{amsmath} package provides some environments for
 % matrices\index{matrices} beyond the basic \env{array} environment of
-% \latex/.
+% \LaTeX{}.
 Gói \pkg{amsmath} cung cấp một số môi trường để biểu diễn ma trận
-tiện lợi hơn\footnote{|beyond|} môi trường \env{array} của \latex/.
+tiện lợi hơn\footnote{|beyond|} môi trường \env{array} của \LaTeX{}.
 % The \env{pmatrix}, \env{bmatrix}, \env{Bmatrix}, \env{vmatrix}
 % and \env{Vmatrix} have (respectively) $(\,)$, $[\,]$, $\lbrace\,\rbrace$,
 % $\lvert\,\rvert$, and
@@ -1422,10 +1156,10 @@ các ma trận là 10\mdash con số này có thể thay đổi được%
 \footnote{%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % More precisely: The maximum number of columns in a matrix is determined
 % by the counter |MaxMatrixCols| (normal value = 10), which you can change
-% if necessary using \latex/'s \cn{setcounter} or \cn{addtocounter}
+% if necessary using \LaTeX{}'s \cn{setcounter} or \cn{addtocounter}
 % commands.%
 \emph{Cụ thể hơn:} số tối đa các cột của ma trận được xác định bởi bộ đếm |MaxMatrixCols|
-(mặc định là 10); để thay đổi số này, bạn dùng các lệnh của \latex/ là
+(mặc định là 10); để thay đổi số này, bạn dùng các lệnh của \LaTeX{} là
 \cn{setcounter} hoặc \cn{addtocounter}.
 }.
 % (If you need left or right alignment in a column or other special
@@ -1537,7 +1271,7 @@ Lệnh ngắn& Lệnh dài& Ví dụ & Lệnh ngắn& Lệnh dài& Ví dụ\\
 % get a negative \cn{quad} you could write |\mspace{-18.0mu}|.
 Tổng quát hơn, để điều chỉnh khoảng cách trong chế độ toán, bạn dùng
 lệnh \cn{mspace} và \emph{đơn vị toán}. \emph{Đơn vị toán},
-ký hiệu là |mu| (|math unit|), là đơn vị độ dài của \latex/ trong chế độ toán,
+ký hiệu là |mu| (|math unit|), là đơn vị độ dài của \LaTeX{} trong chế độ toán,
 bằng 1/18 em\footnote{Thế |em| là cái chi?}. Ví dụ,
 để có khoảng \cn{quad} âm, bạn có thể dùng |\mspace{-18.0mu}|.
 
@@ -1633,17 +1367,17 @@ Ví dụ cuối cùng ở trên cho biết cách làm thế nào để ngăn c�
 % In ordinary \LaTeX{} the placement of the second accent in doubled math
 % accents is often poor. With the \pkg{amsmath} package you
 % will get improved placement of the second accent:
-Thông thường, \latex/ khó có thể biểu diễn cho đẹp cùng lúc hai dấu nhấn
+Thông thường, \LaTeX{} khó có thể biểu diễn cho đẹp cùng lúc hai dấu nhấn
 trên một ký hiệu. Với gói \pkg{amsmath}, việc này khá hơn rất nhiều; ví dụ
 $\hat{\hat{A}}$ (cho bởi \cn{hat}|{\hat{A}}|).
 
 % The commands \cn{dddot} and \cn{ddddot} are available to produce triple
 % and quadruple dot accents in addition to the \cn{dot} and \cn{ddot}
-% accents already available in \latex/.
+% accents already available in \LaTeX{}.
 \medskip
 Các lệnh \cn{dddot} và \cn{ddddot} biểu diễn hai và ba dấu chấm
 như là dấu nhấn, ví dụ $\dddot C$. Đây là các lệnh do \pkg{amsmath} cung cấp;
-còn \cn{dot} và \cn{ddot} là các lệnh của \latex/.
+còn \cn{dot} và \cn{ddot} là các lệnh của \LaTeX{}.
 
 % To get a superscripted hat or tilde character, load the \pkg{amsxtra}
 % package and use \cn{sphat} or \cn{sptilde}. Usage is \verb'A\sphat'
@@ -1662,9 +1396,9 @@ bên dưới, vui lòng xem tài liệu hướng dẫn gói \pkg{accents}(viết
 %\section{Roots}
 \section{Căn số}
 
-% In ordinary \latex/ the placement of root indices is sometimes not so
+% In ordinary \LaTeX{} the placement of root indices is sometimes not so
 % good: $\sqrt[\beta]{k}$ (|\sqrt||[\beta]{k}|). 
-Cách biểu diễn căn số của \latex/ nhiều khi không thật đẹp mắt, như
+Cách biểu diễn căn số của \LaTeX{} nhiều khi không thật đẹp mắt, như
 trong ví dụ $\sqrt[\beta]{k}$ (cho bởi |\sqrt||[\beta]{k}|). 
 % In the \pkg{amsmath} package \cn{leftroot} and \cn{uproot} allow you to adjust
 % the position of the root:
@@ -1706,10 +1440,10 @@ lệnh này tương tự như lệnh \cn{fbox}, nhưng nội dung của lệnh �
 %\section{Over and under arrows}
 \section{Mũi tên bên trên, bên dưới}
 
-% Basic \latex/ provides \cn{overrightarrow} and \cn{overleftarrow}
+% Basic \LaTeX{} provides \cn{overrightarrow} and \cn{overleftarrow}
 % commands. Some additional over and under arrow commands are provided
 % by the \pkg{amsmath} package to extend the set:
-\latex/ chuẩn chỉ cung cấp các mũi tên bên-trên-qua-trái hoặc bên-trên-qua-phải
+\LaTeX{} chuẩn chỉ cung cấp các mũi tên bên-trên-qua-trái hoặc bên-trên-qua-phải
 nhờ các lệnh \cn{overrightarrow}, \cn{overleftarrow}. Dưới đây là các dạng
 mũi tên khác do gói \pkg{amsmath} cung cấp.
 
@@ -1723,7 +1457,7 @@ mũi tên khác do gói \pkg{amsmath} cung cấp.
 Ví dụ, \cn{overleftarrow}|{XYZ}| sẽ cho bạn $\overleftarrow{XYZ}$.
 
 %\section{Extensible arrows}
-\section{Mũi tên có chỉ số. Bổ sung của kyanh}
+\section{Mũi tên có chỉ số}
 
 % \cn{xleftarrow} and \cn{xrightarrow} produce
 % arrows\index{arrows!extensible} that extend automatically to accommodate
@@ -1741,19 +1475,19 @@ A\xleftarrow{n+\mu-1}B \xrightarrow[T]{n\pm i-1}C
 A\xleftarrow{n+\mu-1}B \xrightarrow[T]{n\pm i-1}C
 \end{verbatim}
 
-\medskip
-Để có chẳng hạn,
-\begin{equation}
-A\xlongequal[kyanh]{\text{theo (1)}}B,\qquad
-A\xLongrightarrow{\text{theo Tiên đề 2}}B,
-\end{equation}
-bạn có thể dùng gói \pkg{ccc-arrows} (của |kyanh|;
-tải về: \url{http://www.viettug.org/}).
+%% \medskip
+%% Để có chẳng hạn,
+%% \begin{equation}
+%% A\xlongequal[kyanh]{\text{theo (1)}}B,\qquad
+%% A\xLongrightarrow{\text{theo Tiên đề 2}}B,
+%% \end{equation}
+%% bạn có thể dùng gói \pkg{ccc-arrows} (của |kyanh|;
+%% tải về: \url{http://www.viettug.org/}).
 
 %\section{Affixing symbols to other symbols}
 \section{Gắn các ký hiệu với nhau}
 
-% \latex/ provides \cn{stackrel} for placing a
+% \LaTeX{} provides \cn{stackrel} for placing a
 % superscript\index{subscripts and superscripts} above a binary relation.
 % In the \pkg{amsmath} package there are somewhat more general commands,
 % \cn{overset} and \cn{underset}, that can be used to place one symbol
@@ -1761,7 +1495,7 @@ tải về: \url{http://www.viettug.org/}).
 % else. The input |\overset{*}{X}| will place a superscript-size $*$ above
 % the $X$: $\overset{*}{X}$; \cn{underset} is the analog for adding a
 % symbol underneath.
-\latex/ cung cấp lệnh \cn{stackrel} để đặt chỉ số trên cho các quan hệ (toán tử)
+\LaTeX{} cung cấp lệnh \cn{stackrel} để đặt chỉ số trên cho các quan hệ (toán tử)
 nhị phân. Với gói \pkg{amsmath}, các lệnh \cn{overset} và \cn{underset}
 còn làm được việc tổng quát hơn: đặt một ký hiệu bên trên hoặc bên dưới
 một ký hiệu khác, bất kể ký hiệu đó có phải là toán tử nhị phân hay không.
@@ -1779,13 +1513,13 @@ Xem thêm cách dùng \cn{sideset} ở Mục~\secref{sideset}.
 \subsection{Các lệnh \cn{frac}, \cn{dfrac}, và \cn{tfrac}}
 
 % The \cn{frac} command, which is in the basic command set of
-% \latex/,\index{fractions} takes two arguments\mdash numerator and
+% \LaTeX{},\index{fractions} takes two arguments\mdash numerator and
 % denominator\mdash and typesets them in normal fraction form. The
 % \pkg{amsmath} package provides also \cn{dfrac} and \cn{tfrac} as
 % convenient abbreviations for |{\displaystyle\frac| |...| |}|
 % and\index{textstyle@\cn{textstyle}}\relax
 % \index{displaystyle@\cn{displaystyle}} |{\textstyle\frac| |...| |}|.
-Lệnh \cn{frac}, là lệnh cơ bản của \latex/, nhận hai tham số\mdash tử số
+Lệnh \cn{frac}, là lệnh cơ bản của \LaTeX{}, nhận hai tham số\mdash tử số
 và mẫu số\mdash và biểu diễn phân số theo kiểu thông thường trong toán học.
 Để ý rằng, các phân số ở chế độ toán chung dòng thường nhỏ; để khiến chúng
 to hơn, bạn dùng |\displaystyle\frac...|. Để tiện lợi,
@@ -2051,13 +1785,13 @@ bị dãn quá nhiều theo chiều đứng. Khi đó, việc dùng \ncn{bigl} v
 chỉ cho ra dấu ngoặc vừa đủ cao và nhờ đó dòng không bị v-dãn nhiều quá,
 như trong $\bigl\lvert\frac{b'}{d'}\bigr\rvert$.
 
-% In ordinary \latex/ \ncn{big}, \ncn{bigg}, \ncn{Big}, and \ncn{Bigg}
-% delimiters aren't scaled properly over the full range of \latex/ font
+% In ordinary \LaTeX{} \ncn{big}, \ncn{bigg}, \ncn{Big}, and \ncn{Bigg}
+% delimiters aren't scaled properly over the full range of \LaTeX{} font
 % sizes.  With the \pkg{amsmath} package they are.
 \medskip
-Các lệnh \ncn{big}, \ncn{bigg}, \ncn{Big} và \ncn{Bigg} mà \latex/ cung cấp
+Các lệnh \ncn{big}, \ncn{bigg}, \ncn{Big} và \ncn{Bigg} mà \LaTeX{} cung cấp
 không thay đổi kích cỡ dấu ngoặc một cách chính xác trong các kích cỡ |font|
-khác nhau của \latex/. Gói \pkg{amsmath} khắc phục nhược điểm đó.
+khác nhau của \LaTeX{}. Gói \pkg{amsmath} khắc phục nhược điểm đó.
 
 %\subsection{Vertical bar notations}
 \subsection{Ký hiệu $\rvert$}
@@ -2068,12 +1802,12 @@ khác nhau của \latex/. Gói \pkg{amsmath} khắc phục nhược điểm đó
 Gói \pkg{amsmath} cung cấp các lệnh \cn{lvert}, \cn{rvert},
 \cn{lVert}, \cn{rVert} (so sánh với \cn{langle}, \cn{rangle}) nhằm
 giải quyết vấn đề trùng hợp ý nghĩa của ký tự \qc{\|}.
-% This character is currently used in \latex/ documents to represent a wide
+% This character is currently used in \LaTeX{} documents to represent a wide
 % variety of mathematical objects: the `divides' relation in a
 % number-theory expression like $p\vert q$, or the absolute-value
 % operation $\lvert z\rvert$, or the `such that' condition in set
 % notation, or the `evaluated at' notation $f_\zeta(t)\bigr\rvert_{t=0}$.
-Ký tự này được dùng trong tài liệu \latex/ để chỉ nhiều đối tượng
+Ký tự này được dùng trong tài liệu \LaTeX{} để chỉ nhiều đối tượng
 toán học khác nhau: chỉ quan hệ `ước số' trong lý thuyết số, ví dụ như
 trong biểu thứ $p\vert q$; chỉ giá trị tuyệt đối $\lvert z\rvert$; hay
 là viết tắt của `sao cho' khi biểu diễn tập hợp; hoặc hàm ý `lấy giá trị tại'
@@ -2223,13 +1957,13 @@ nhờ \cn{DeclareMathOperator}.
 
 % Commands \cn{mod}, \cn{bmod}, \cn{pmod}, \cn{pod} are provided to deal
 % with the special spacing conventions of \qq{mod} notation. \cn{bmod} and
-% \cn{pmod} are available in \latex/, but with the \pkg{amsmath} package
+% \cn{pmod} are available in \LaTeX{}, but with the \pkg{amsmath} package
 % the spacing of \cn{pmod} will adjust to a smaller value if it's used in
 % a non-display-mode formula. \cn{mod} and \cn{pod} are variants of
 % \cn{pmod} preferred by some authors; \cn{mod} omits the parentheses,
 % whereas \cn{pod} omits the \qq{mod} and retains the parentheses.
 Các lệnh \cn{mod}, \cn{bmod}, \cn{pmod}, \cn{pod} biểu diễn các ký hiệu
-đồng dư. Lệnh \cn{bmod} và \cn{pmod} đã có trong \latex/, nhưng trong gói
+đồng dư. Lệnh \cn{bmod} và \cn{pmod} đã có trong \LaTeX{}, nhưng trong gói
 \pkg{amsmath}, chúng được tinh chỉnh để cho ra khoảng cách tốt hơn trong
 các biểu thức chung dọng. Các lệnh \cn{mod} và \cn{pod} là biến thể của
 \cn{pmod}; lệnh \cn{mod} không tạo ra cặp dấu ngoặc đơn, trong khi lệnh 
@@ -2248,14 +1982,14 @@ các biểu thức chung dọng. Các lệnh \cn{mod} và \cn{pod} là biến th
 
 % The main use of the command \cn{text} is for words or
 % phrases\index{text fragments inside math} in a display. It is very
-% similar to the \latex/ command \cn{mbox} in its effects, but has a
+% similar to the \LaTeX{} command \cn{mbox} in its effects, but has a
 % couple of advantages. If you want a word or phrase of text in a
 % subscript, you can type |..._{\text{word or phrase}}|, which is slightly
 % easier than the \cn{mbox} equivalent: |..._{\mbox{\scriptsize| |word|
 % |or| |phrase}}|. The other advantage is the more descriptive name.
 Mục đích chính của lệnh \cn{text} là để chèn văn bản, |text| vào giữa
 các biểu thức toán học. Lệnh có tác dụng tương tự như lệnh \cn{mbox}
-của \latex/, nhưng dùng \cn{text} hay hơn ở nhiều điểm.
+của \LaTeX{}, nhưng dùng \cn{text} hay hơn ở nhiều điểm.
 Nếu bạn muốn văn bản thêm vào ở cỡ chữ |sub-script|, bạn có thể dùng
 |..._{\text{từ hoặc câu}}|, trong khi với \cn{mbox}, bạn phải dùng
 |..._{\mbox{\scriptsize| |từ| |hoặc| |câu}}|. Điểm hay khác, là tên của
@@ -2510,20 +2244,20 @@ sẽ cho các đường-ngang-kép và đường-đứng-kép. Một \qq{mũi t�
 
 \section{Giới thiệu}
 
-% For more comprehensive information on font use in \latex/, see the
-% \latex/ font guide (\fn{fntguide.tex}) or \booktitle{The \latex/
+% For more comprehensive information on font use in \LaTeX{}, see the
+% \LaTeX{} font guide (\fn{fntguide.tex}) or \booktitle{The \LaTeX{}
 % Companion} \cite{tlc}. The basic set of math font commands\index{math
-% fonts}\relax \index{math symbols|see{math fonts}} in \latex/ includes
+% fonts}\relax \index{math symbols|see{math fonts}} in \LaTeX{} includes
 % \cn{mathbf}, \cn{mathrm}, \cn{mathcal}, \cn{mathsf}, \cn{mathtt},
 % \cn{mathit}. Additional math alphabet commands such as
 % \cn{mathbb} for blackboard bold, \cn{mathfrak} for Fraktur, and
 % \cn{mathscr} for Euler script are available through the packages
 % \pkg{amsfonts} and \pkg{euscript} (distributed separately).
 Mọi vấn đề về |font| có thể tìm thấy trong hướng dẫn (\fn{fntguide.tex})
-hoặc \booktitle{The \latex/ Companion} \cite{tlc}.
+hoặc \booktitle{The \LaTeX{} Companion} \cite{tlc}.
 
 \medskip
-Các lệnh cơ bản (của \latex/)
+Các lệnh cơ bản (của \LaTeX{})
 điều chỉnh |font| trong chế độ toán bao gồm:
 \cn{mathbf}, \cn{mathrm}, \cn{mathcal}, \cn{mathsf}, \cn{mathtt}, \cn{mathit}.
 Ngoài ra, gói \pkg{amsfonts} cung cấp các lệnh đặc biệt:
@@ -2538,7 +2272,7 @@ Ngoài ra, gói \pkg{amsfonts} cung cấp các lệnh đặc biệt:
 % document, you might wish that they had shorter names, such as \ncn{mb}
 % instead of \cn{mathbf}. Of course, there is nothing to keep you from
 % providing such abbreviations for yourself by suitable \cn{newcommand}
-% statements. But for \latex/ to provide shorter names would actually be a
+% statements. But for \LaTeX{} to provide shorter names would actually be a
 % disservice to authors, as that would obscure a much better alternative:
 % defining custom command names derived from the names of the underlying
 % mathematical objects, rather than from the names of the fonts used to
@@ -2548,7 +2282,7 @@ Ngoài ra, gói \pkg{amsfonts} cung cấp các lệnh đặc biệt:
 Nếu bạn phải thường xuyên thay đổi kiểu |font| trong chế độ toán,
 bạn có thể nghĩ đến các định nghĩa vắn tắt, chẳng hạn, dùng \ncn{mb}
 thay vì \cn{mathbf}. Tất nhiên, không gì ngăn cản bạn làm điều đó,
-vì bạn có trong tay lệnh-tạo-định-nghĩa \cn{newcommand}. Nhưng với \latex/,
+vì bạn có trong tay lệnh-tạo-định-nghĩa \cn{newcommand}. Nhưng với \LaTeX{},
 việc đưa ra các dạng định nghĩa vắn tắt như vậy cần nên tránh, cần thay thế
 bởi giải pháp hay hơn: \emph{định nghĩa một lệnh dựa trên \emph{thuộc tính của
 đối tượng toán học}, hơn là dựa trên tên của |font| dùng để phân biệt
@@ -2651,7 +2385,7 @@ bị ảnh hưởng bởi \cn{mathbf}.
 % bold} and the command works by typesetting multiple copies of the symbol
 % with slight offsets. The quality of the output is inferior, especially
 % for symbols that contain any hairline strokes. When the standard default set of
-% \latex/ math fonts are in use (Computer Modern), the only symbols that
+% \LaTeX{} math fonts are in use (Computer Modern), the only symbols that
 % are likely to require \cn{pmb} are large operator symbols like \cn{sum},
 % extended delimiter symbols, or the extra math symbols provided by
 % the \pkg{amssymb} package \cite{amsfonts}.
@@ -2667,7 +2401,7 @@ nguyên lý làm việc của lệnh \cn{pmb} là |typeset| nhiều bản sao c�
 ký hiệu và sắp xếp các bản sao đó sát bên nhau (giống như khi bạn
 dùng bút kẻ nhiều đường liên tiếp nhau trên giấy để có một đường đậm nét).
 Rõ ràng, chất lượng kết quả của lệnh \cn{pmb} là không tốt lắm, nhất là
-độ nét của ký hiệu. Trong khi bộ |font| chuẩn của \latex/ được dùng để
+độ nét của ký hiệu. Trong khi bộ |font| chuẩn của \LaTeX{} được dùng để
 |typeset| các biểu thức toán, là bộ |font| CM (Computer Modern), thì cần đến
 lệnh \cn{pmb} chỉ là các ký hiệu toán tử lớn, như \cn{sum},
 các dấu ngoặc quá cỡ, hay là các ký hiệu toán học bổ sung bởi gói
@@ -2690,13 +2424,13 @@ A_\infty + \pi A_0
 \end{equation*}
 % If you want to use only the \cn{boldsymbol} command without loading the
 % whole \pkg{amsmath} package, the \pkg{bm} package is recommended (this
-% is a standard \latex/ package, not an AMS package; you probably have it
-% already if you have a 1997 or newer version of \latex/).
+% is a standard \LaTeX{} package, not an AMS package; you probably have it
+% already if you have a 1997 or newer version of \LaTeX{}).
 
 \medskip\noindent
 Nếu bạn muốn dùng lệnh \cn{boldsymbol} độc lập mà không tải gói \pkg{amsmath},
-thì hãy dùng gói \pkg{bm}; đây là gói thuộc chuẩn \latex/, không thuộc bộ
-phân phối của các gói AMS. Gói này tích hợp trong bộ \latex/ phiên
+thì hãy dùng gói \pkg{bm}; đây là gói thuộc chuẩn \LaTeX{}, không thuộc bộ
+phân phối của các gói AMS. Gói này tích hợp trong bộ \LaTeX{} phiên
 bản năm 1997 hoặc cao hơn.
 
 %\section{Italic Greek letters}
@@ -2718,7 +2452,7 @@ bản năm 1997 hoặc cao hơn.
 
 \section{General remarks}
 
-This is a supplement to Chapter~8 of the \latex/ manual \cite{lamport} (first
+This is a supplement to Chapter~8 of the \LaTeX{} manual \cite{lamport} (first
 edition: Chapter~6). For the reader's convenience, the set of error
 messages discussed here overlaps somewhat with the set in that chapter,
 but please be aware that we don't provide exhaustive coverage here.
@@ -2728,33 +2462,37 @@ nonalphabetical characters such as \qc{\\}. Where examples are given, we
 show also the help messages that appear on screen when you respond to an
 error message prompt by entering |h|.
 
-There is also a section discussing some output errors, i.e., instances
-where the printed document has something wrong but there was no \latex/
-error during typesetting.
+\medskip
+%% There is also a section discussing some output errors, i.e., instances
+%% where the printed document has something wrong but there was no \LaTeX{}
+%% error during typesetting.
+Đôi khi bạn nhận thông báo lỗi
 
-\section{Error messages}
+\section{Thông báo lỗi}
 
 \begin{error}{\begin{split} won't work here.}
+(|\begin{split}| không làm việc ở đây.)
 \errexa
 \begin{verbatim}
 ! Package amsmath Error: \begin{split} won't work here.
  ...
-
 l.8 \begin{split}
-
 ? h
 \Did you forget a preceding \begin{equation}?
 If not, perhaps the `aligned' environment is what you want.
 ?
 \end{verbatim}
 \errexpl
-The \env{split} environment does not construct a stand-alone displayed
-equation; it needs to be used within some other environment such as
-\env{equation} or \env{gather}.
-
+%% The \env{split} environment does not construct a stand-alone displayed
+%% equation; it needs to be used within some other environment such as
+%% \env{equation} or \env{gather}.
+Môi trường \env{split} không thể dùng độc lập để biểu diễn phương trình;
+nó phải được dùng kèm bên trong các môi trường chẳng hạn \env{equation}
+hoặc \env{gather}.
 \end{error}
 
 \begin{error}{Extra & on this line}
+(Thừa dấu |&| trong dòng)
 \errexa
 \begin{verbatim}
 ! Package amsmath Error: Extra & on this line.
@@ -2762,46 +2500,50 @@ equation; it needs to be used within some other environment such as
 See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...
-
 l.9 \end{alignat}
-
 ? h
 \An extra & here is so disastrous that you should probably exit
  and fix things up.
 ?
 \end{verbatim}
 \errexpl
-In an \env{alignat} structure the number of alignment points per line
-is dictated by the numeric argument given after |\begin{alignat}|.
-If you use more alignment points in a line it is assumed that you
-accidentally left out a newline command \cn{\\} and the above error is
-issued.
+%% In an \env{alignat} structure the number of alignment points per line
+%% is dictated by the numeric argument given after |\begin{alignat}|.
+%% If you use more alignment points in a line it is assumed that you
+%% accidentally left out a newline command \cn{\\} and the above error is
+%% issued.
+Trong các môi trường \env{alignat} số chỉ điểm canh cột được cho ngay
+đằng sau cụm lệnh |\begin{alignat}|. Trong một dòng phương trình nào đó
+của môi trường này, nếu số dấu |&| để canh cột nhiều hơn số đã chỉ ra,
+thì lỗi trên sẽ xuất hiện. Có thể là bạn quên dùng lệnh \cn{\\}
+để ngắt các dòng...
 \end{error}
 
 \begin{error}{Improper argument for math accent}
+(Đối số cho dấu toán không hợp lệ)
 \errexa
 \begin{verbatim}
 ! Package amsmath Error: Improper argument for math accent:
 (amsmath)                Extra braces must be added to
 (amsmath)                prevent wrong output.
-
 See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...
-
-l.415 \tilde k_{\lambda_j} = P_{\tilde \mathcal
-                                               {M}}
+l.415 \tilde k_{\lambda_j} = P_{\tilde \mathcal {M}}
 ?
 \end{verbatim}
 \errexpl
-Non-simple arguments for any \LaTeX{} command should be enclosed in
-braces. In this example extra braces are needed as follows:
+%% Non-simple arguments for any \LaTeX{} command should be enclosed in
+%% braces. In this example extra braces are needed as follows:
+Các đối số phức tạp cho bất kỳ lệnh \LaTeX{} nào cũng cần được đặt
+bên trong cặp dấu ngoặc. Dòng mã lỗi như trên cần chỉnh lại như sau:
 \begin{verbatim}
 ... P_{\tilde{\mathcal{M}}}
 \end{verbatim}
 \end{error}
 
 \begin{error}{Font OMX/cmex/m/n/7=cmex7 not loadable ...}
+(Không thể nạp font OMX/cmex/...)
 \errexa
 \begin{verbatim}
 ! Font OMX/cmex/m/n/7=cmex7 not loadable: Metric (TFM) file not found.
@@ -2820,11 +2562,11 @@ e.g., type `I\font<same font id>=<substitute font name>'.
 \errexpl
 Certain extra sizes of some Computer Modern fonts that were formerly
 available mainly through the AMSFonts\index{AMSFonts collection}
-distribution are considered part of standard \latex/ (as of June 1994):
+distribution are considered part of standard \LaTeX{} (as of June 1994):
 \fn{cmex7}\ndash \texttt{9}, \fn{cmmib5}\ndash \texttt{9}, and
 \fn{cmbsy5}\ndash \texttt{9}. If these extra sizes are missing on your
 system, you should try first to get them from the source where you
-obtained \latex/. If that fails, you could try getting the fonts from
+obtained \LaTeX{}. If that fails, you could try getting the fonts from
 CTAN (e.g., in the form of Metafont\index{Metafont source files} source
 files, directory \nfn{/tex-archive/fonts/latex/mf}, or in PostScript
 Type 1 format, directory
@@ -2889,7 +2631,7 @@ where the first line should read instead
 Another possibility is that you have a left bracket character |[|
 following a linebreak command \cn{\\} in a multiline construction such
 as \env{array}, \env{tabular}, or \env{eqnarray}. This will be
-interpreted by \latex/ as the beginning of an `additional vertical
+interpreted by \LaTeX{} as the beginning of an `additional vertical
 space' request \cite[\S C.1.6]{lamport}, even if it occurs on the following
 line and is intended to be part of the contents. For example
 \begin{verbatim}
@@ -2900,7 +2642,7 @@ m+n
 \end{array}
 \end{verbatim}
 To prevent the error message in such a case, you can
-add braces as discussed in the \latex/ manual \cite[\S C.1.1]{lamport}:
+add braces as discussed in the \LaTeX{} manual \cite[\S C.1.1]{lamport}:
 \begin{verbatim}
 \begin{array}
 a+b\\
@@ -3070,8 +2812,8 @@ Package amsmath Warning: Foreign command \over; \frac or \genfrac
 \end{verbatim}
 \errexpl The primitive generalized fraction commands of \tex/\mdash
 \cs{over}, \cs{atop}, \cs{above}\mdash are deprecated when the
-\pkg{amsmath} package is used because their syntax is foreign to \latex/
-and \pkg{amsmath} provides native \latex/ equivalents. See
+\pkg{amsmath} package is used because their syntax is foreign to \LaTeX{}
+and \pkg{amsmath} provides native \LaTeX{} equivalents. See
 \fn{technote.tex} for further information.
 \end{error}
 
@@ -3175,7 +2917,7 @@ numbers elsewhere to see if the problem is the one described in
 %%%% \item The source file where the problem occurred, preferably reduced
 %%%%   to minimum size by removing any material that can be removed without
 %%%%   affecting the observed problem.
-%%%% \item A \latex/ log file showing the error message (if applicable) and
+%%%% \item A \LaTeX{} log file showing the error message (if applicable) and
 %%%%   the version numbers of the document class and option files being used.
 %%%% \end{enumerate}
 %%%% 
@@ -3215,7 +2957,7 @@ numbers elsewhere to see if the problem is the one described in
 %%%% local user group can be gotten from the \tex/ Users Group.
 %%%% 
 %%%% There is a Usenet newsgroup called \fn{comp.text.tex} that is a fairly
-%%%% good source of information about \latex/ and \tex/ in general. If you
+%%%% good source of information about \LaTeX{} and \tex/ in general. If you
 %%%% don't know about reading newsgroups, check with your local system
 %%%% administrator to see if newsgroup service is available at your site.
 
@@ -3234,7 +2976,7 @@ Amer. Math. Soc., Providence, RI, 1996, 1999.
 Amer. Math. Soc., Providence, RI, 1999.
 
 \bibitem{tlc} Michel Goossens, Frank Mittelbach, and Alexander Samarin,
-\booktitle{The \latex/ companion}, Addison-Wesley, Reading, MA, 1994.
+\booktitle{The \LaTeX{} companion}, Addison-Wesley, Reading, MA, 1994.
   [\emph{Note: The 1994 edition is not a reliable guide for the
     \pkg{amsmath} package unless you refer to the errata for Chapter
     8\mdash file \fn{compan.err}, distributed with \LaTeX{}.}]
@@ -3250,12 +2992,12 @@ Birkh\"{a}user, Boston, 1995.\par
 \bibitem{kn} Donald E. Knuth, \booktitle{The \tex/book},
 Addison-Wesley, Reading, MA, 1984.
 
-\bibitem{lamport} Leslie Lamport, \booktitle{\latex/: A document preparation
+\bibitem{lamport} Leslie Lamport, \booktitle{\LaTeX{}: A document preparation
 system}, 2nd revised ed., Addison-Wesley, Reading, MA, 1994.
 
 \bibitem{msf} Frank Mittelbach and Rainer Sch\"opf,
 \textit{The new font family selection\mdash user
-interface to standard \latex/}, \journalname{TUGboat} \textbf{11},
+interface to standard \LaTeX{}}, \journalname{TUGboat} \textbf{11},
 no.~2 (June 1990), pp.~297\ndash 305.
 
 \bibitem{jt} Michael Spivak, \booktitle{The joy of \tex/}, 2nd revised ed.,
