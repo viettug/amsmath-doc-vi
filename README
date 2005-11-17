@@ -2,27 +2,20 @@ USER's GUIDE for the AMSMATH package (version 2.0)
 --------------------------------------------------
 
 * source: TEXMF/source/latex/amsmath/*
-
-* translate into vietnamese by ccc (http://vntex.sarovar.org/authors/ccc/)
-
-* the translated version of user's guide is copyrighted by VnTeX, 2004
-
-* License: LPPG
-
-* please report any bugs, suggestions to ccc (mailto:kyanh@users.sarovar.org)
-
+* translated into vietnamese by kyanh <kyanh@o2.pl>
+* License: LPPL
+* please report any bugs, suggestions to kyanh <kyanh@o2.pl>
 * file list
-
-    Using the `subequations' environment
-    - subeqn.tex
-    - subeqn.pdf
-
-    User's Guide for `amsmath' package
-    - amsldoc.pdf (vietnamese version)
-
-    Testing `amsmath' package
-    - testmath.tex
-    - testmath.pdf
+	README (this file)
+	TODO
+	THANKS
+	amsldoc-vi.pdf
+	amsldoc-vi-print.pdf
+	src/
+	src/header.tex
+	src/amsldoc-vi.tex
+	src/amsldoc-vi-print.tex
+	src/Makefile	
 
 ----------------
-ccc (2004/11/04)
+kyanh [2004/11/04, 2005/11/17]

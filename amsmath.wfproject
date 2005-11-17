@@ -1,6 +1,9 @@
 name: AMSDOC
+files: /home/users/kyanh/maths/bjorling/borling.tex
+files: /usr/share/texmf/tex/latex/base/article.cls
+files: /home/users/kyanh/tex/kyanh/misc/amsldoc.cls
+files: /home/users/kyanh/tex/doc/amsmath-doc-vi/tmp.txt
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/header.tex
-files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi/src/amsldoc-vi.tex
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc.tex
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/TODO
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/README
@@ -13,8 +16,20 @@ word_wrap: 0
 searchlist: \see
 searchlist: bổ sung của ccc
 searchlist: bổ sung
-searchlist: \pagestyle
+searchlist: \latex
+searchlist: \latex/
+searchlist: lentry
+searchlist: ifthen
+searchlist: \section
+searchlist: hyperref
+searchlist: ifpdf
+replacelist: \LaTeX{}
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi/src/amsldoc-vi.tex
+recent_files: /home/users/kyanh/maths/bjorling/borling.tex
+recent_files: /usr/share/texmf/tex/latex/base/article.cls
+recent_files: /home/users/kyanh/tex/kyanh/misc/amsldoc.cls
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/tmp.txt
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc.toc
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc.tex
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/TODO
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/README
@@ -24,6 +39,5 @@ recent_files: /home/users/kyanh/tex/doc/amsmath/amsldoc.tex
 recent_files: /home/kyanh/tex/doc/amsmath/test.tex
 recent_files: /home/kyanh/tex/doc/amsmath/subeqn.tex
 recent_files: /home/kyanh/tex/doc/amsmath/amsldoc.tex
-recent_files: /home/kyanh/tex/doc/amsmath/testmath.tex
 opendir: /home/users/kyanh/tex/doc/amsmath-doc-vi
 savedir: /home/users/kyanh/tex/doc/amsmath-doc-vi
