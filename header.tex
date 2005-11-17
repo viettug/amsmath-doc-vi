@@ -23,10 +23,25 @@
 \usepackage{amscd}
 \usepackage{indentfirst}
 \usepackage[left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
-\IfFileExists{/home/users/kyanh/.is.m0nster.}%
-{\usepackage{ktv-buildnum}}%
-{\newcount\buildnum \buildnum=9999}
 
+\IfFileExists{/home/users/kyanh/.is.m0nster.}%
+{
+	\IfFileExists{finalized}%
+	{
+		\newcount\buildnum
+		\ifx\printversion\undefined
+			\input \jobname.ktvnum
+		\else
+			\input amsldoc-vi.ktvnum	
+		\fi
+	}
+	{
+		\usepackage{ktv-buildnum}}%
+	}
+{
+	\newcount\buildnum
+	\buildnum=9999
+}
 % =====================================================================
 
 \MakeShortVerb{|}
@@ -304,4 +319,5 @@
 
 \def\errexa{\par\vskip2mm\noindent\textit{Ví dụ:}\par\noindent}
 \def\errexpl{\par\vskip2mm\noindent\textit{Giải thích:}\par\noindent}
+
 \endinput

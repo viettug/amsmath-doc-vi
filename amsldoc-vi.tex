@@ -26,7 +26,11 @@
 	\centerline{\LARGE\url{http://www.viettug.org/}}
 \endgroup
 
-\newpage
+\ifx\printversion\undefined
+	\newpage
+\else
+	\cleardoublepage
+\fi
 
 \begin{verbatim}
 This is the file `amsldoc-vi(-print).pdf'

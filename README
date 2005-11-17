@@ -15,7 +15,7 @@ USER's GUIDE for the AMSMATH package (version 2.0)
 	src/header.tex
 	src/amsldoc-vi.tex
 	src/amsldoc-vi-print.tex
-	src/Makefile	
+	src/Makefile
 
 ----------------
 kyanh [2004/11/04, 2005/11/17]
