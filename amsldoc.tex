@@ -1,10 +1,12 @@
 \input header.tex
 
+\pagestyle{headings}
+
 \begin{document}
 
 % ----------------------------------------------------------------------
 
-\pagestyle{empty}
+\thispagestyle{empty}
 
 \begingroup
 	\IfFileExists{/home/users/kyanh/.is.m0nster.}%
@@ -24,6 +26,45 @@
 	\centerline{\LARGE\url{http://www.viettug.org/}}
 \endgroup
 
+\newpage
+
+\begin{verbatim}
+This is the file `amsldoc-vi(-print).pdf'
+which is generated from the source `amsldoc-vi.tex'.
+
+----------------------------------------------------------
+Copyright (C) 2005 kyanh <kyanh at o2 dot pl>
+----------------------------------------------------------
+
+This is a compiled work as described in
+    http://www.latex-project.org/lppl.txt
+
+This compiled work may be distributed and/or modified under the
+conditions of the LaTeX Project Public License, either version 1.3
+of this license or (at your option) any later version.
+The latest version of this license is in
+    http://www.latex-project.org/lppl.txt
+and version 1.3 or later is part of all distributions of LaTeX
+version 2003/12/01 or later.
+
+This work has the LPPL maintenance status "maintained".
+
+Current maintainer of this work is kyanh <kyanh at o2 dot pl>.
+
+The following files constitute the `amsldoc-vi' bundle
+and *MUST* be distributed as a whole
+
+ README
+ TODO
+ THANKS
+ amsldoc-vi.pdf
+ amsldoc-vi-print.pdf
+ src/
+ src/header.tex
+ src/amsldoc-vi.tex
+ src/amsldoc-vi-print.tex
+ src/Makefile
+\end{verbatim}
 % =====================================================================
 
 \ifx\printversion\undefined
@@ -2560,80 +2601,106 @@ e.g., type `I\font<same font id>=<substitute font name>'.
 ?
 \end{verbatim}
 \errexpl
-Certain extra sizes of some Computer Modern fonts that were formerly
-available mainly through the AMSFonts\index{AMSFonts collection}
-distribution are considered part of standard \LaTeX{} (as of June 1994):
+%% Certain extra sizes of some Computer Modern fonts that were formerly
+%% available mainly through the AMSFonts\index{AMSFonts collection}
+%% distribution are considered part of standard \LaTeX{} (as of June 1994):
+Vài cỡ |font| bổ sung của họ font |Computer| |Modern| trước đây nằm trong
+bản phân phối |font| của |AMS|, nhưng từ tháng 6 năm 1994, đã trở thành
+một phần trong phân phối chuẩn của \LaTeX{}:
 \fn{cmex7}\ndash \texttt{9}, \fn{cmmib5}\ndash \texttt{9}, and
-\fn{cmbsy5}\ndash \texttt{9}. If these extra sizes are missing on your
-system, you should try first to get them from the source where you
-obtained \LaTeX{}. If that fails, you could try getting the fonts from
-CTAN (e.g., in the form of Metafont\index{Metafont source files} source
-files, directory \nfn{/tex-archive/fonts/latex/mf}, or in PostScript
-Type 1 format, directory
-\nfn{/tex-archive/fonts/cm/ps-type1/bakoma}\index{BaKoMa fonts}\relax
-\index{PostScript fonts}).
+\fn{cmbsy5}\ndash \texttt{9}.
+%% If these extra sizes are missing on your
+%% system, you should try first to get them from the source where you
+%% obtained \LaTeX{}. If that fails, you could try getting the fonts from
+%% CTAN (e.g., in the form of Metafont\index{Metafont source files} source
+%% files, directory \nfn{/tex-archive/fonts/latex/mf}, or in PostScript
+%% Type 1 format, directory
+%% \nfn{/tex-archive/fonts/cm/ps-type1/bakoma}\index{BaKoMa fonts}\relax
+%% \index{PostScript fonts}).
+Nếu các font đó không có trong hệ thống \TeX{} của bạn, hãy thử lấy chúng
+về từ nơi bạn có \LaTeX{}. Nếu không được, thử tìm kiếm ở |CTAN|, các thư mục
+\nfn{/tex-archive/fonts/latex/mf} (dạng |MetaFONT|) và
+\nfn{/tex-archive/fonts/cm/ps-type1/bakoma} (dạng |TYPE1|).
 
-If the font name begins with \fn{cmex}, there is a special option
-\fn{cmex10} for the \pkg{amsmath} package that provides a temporary
-workaround. I.e., change the \cn{usepackage} to
+%% If the font name begins with \fn{cmex}, there is a special option
+%% \fn{cmex10} for the \pkg{amsmath} package that provides a temporary
+%% workaround. I.e., change the \cn{usepackage} to
+\medskip
+Nếu các |font| có tên bắt đầu với \fn{cmex}, có một tùy chọn đặc biệt
+\fn{cmex10} cho gói \pkg{amsmath}, dùng để cung cấp cách giải quyết tạm thời:
 \begin{verbatim}
 \usepackage[cmex10]{amsmath}
 \end{verbatim}
-This will force the use of the 10-point size of the \fn{cmex} font in
-all cases. Depending on the contents of your document this may be
-adequate.
+%% This will force the use of the 10-point size of the \fn{cmex} font in
+%% all cases. Depending on the contents of your document this may be
+%% adequate.
+Bằng việc dùng tùy chọn đó, các |font| cỡ 10 điểm thuộc họ \fn{cmex}
+sẽ được dùng trong mọi trường hợp. Chú ý rằng điều này có thể làm tài
+liệu của bạn trông khập khiễng, khó coi.
 \end{error}
 
 \begin{error}{Math formula deleted: Insufficient extension fonts}
+(không đủ |font| mở rộng)
 \errexa
 \begin{verbatim}
 ! Math formula deleted: Insufficient extension fonts.
 l.8 $ab+b^2$
-
 ?
 \end{verbatim}
 \errexpl
-This usually follows a previous error |Font ... not loadable|; see the
-discussion of that error (above) for solutions.
+%% This usually follows a previous error |Font ... not loadable|; see the
+%% discussion of that error (above) for solutions.
+Lỗi này thường phát sinh sau lỗi |Font ... not loadable|.
+Hãy sử dụng cách giải quyết đã nói ở trên.
 \end{error}
 
 \begin{error}{Missing number, treated as zero}
+(Thiếu đối số dạng số, sử dụng giá trị 0)
 \errexa
 \begin{verbatim}
 ! Missing number, treated as zero.
 <to be read again>
                    a
 l.100 \end{alignat}
-
 ? h
 A number should have been here; I inserted `0'.
 (If you can't figure out why I needed to see a number,
 look up `weird error' in the index to The TeXbook.)
-
 ?
 \end{verbatim}
 \errexpl
-There are many possibilities that can lead to this error. However, one
-possibility that is relevant for the \pkg{amsmath} package is that you
-forgot to give the number argument of an \env{alignat} environment, as
-in:
+%% There are many possibilities that can lead to this error. However, one
+%% possibility that is relevant for the \pkg{amsmath} package is that you
+%% forgot to give the number argument of an \env{alignat} environment, as
+%% in:
+Có nhiều khả năng đưa đến cùng thông báo lỗi này.
+Tuy nhiên, liên quan tới gói \pkg{amsmath}, thường là do bạn quên chỉ ra
+đối số dạng số khi dùng môi trường \env{alignat} như trong ví dụ sau:
 \begin{verbatim}
 \begin{alignat}
  a&  =b&    c& =d\\
 a'& =b'&   c'& =d'
 \end{alignat}
 \end{verbatim}
-where the first line should read instead
+%where the first line should read instead
+Đúng ra, bạn phải dùng thế này:
 \begin{verbatim}
 \begin{alignat}{2}
 \end{verbatim}
 
-Another possibility is that you have a left bracket character |[|
-following a linebreak command \cn{\\} in a multiline construction such
-as \env{array}, \env{tabular}, or \env{eqnarray}. This will be
-interpreted by \LaTeX{} as the beginning of an `additional vertical
-space' request \cite[\S C.1.6]{lamport}, even if it occurs on the following
-line and is intended to be part of the contents. For example
+%% Another possibility is that you have a left bracket character |[|
+%% following a linebreak command \cn{\\} in a multiline construction such
+%% as \env{array}, \env{tabular}, or \env{eqnarray}. This will be
+%% interpreted by \LaTeX{} as the beginning of an `additional vertical
+%% space' request \cite[\S C.1.6]{lamport}, even if it occurs on the following
+%% line and is intended to be part of the contents. For example
+Một khả năng khác có thể sinh ra lỗi đã nói, là bạn đã dùng dấu ngoặc trái |[|
+theo sau bởi lệnh ngắt dòng \cn{\\} trong các môi trường nhiều dòng như
+\env{array}, \env{tabular}, \env{eqnarray}. Việc dùng dấu ngoặc |[| như trong
+ví dụ sau, sẽ được \LaTeX{} hiểu là bạn muốn bắt đầu chế độ `khoảng cách bổ
+sung theo chiều đứng' (giống như khi gọi \cn{\\[2mm]}, xem \cite[\S C.1.6]{lamport}),
+ngay cả khi việc dùng dấu ngoặc đó xảy ra trong một dòng cụ thể và dấu ngoặc
+theo ý bạn phải là một phần của nội dung:
 \begin{verbatim}
 \begin{array}
 a+b\\
@@ -2641,8 +2708,9 @@ a+b\\
 m+n
 \end{array}
 \end{verbatim}
-To prevent the error message in such a case, you can
-add braces as discussed in the \LaTeX{} manual \cite[\S C.1.1]{lamport}:
+%% To prevent the error message in such a case, you can
+%% add braces as discussed in the \LaTeX{} manual \cite[\S C.1.1]{lamport}:
+Để tránh lỗi trong trường hợp nay, bạn có thể nhóm nội dung bằng |{}| như sau:
 \begin{verbatim}
 \begin{array}
 a+b\\
@@ -2650,17 +2718,16 @@ a+b\\
 m+n
 \end{array}
 \end{verbatim}
-
 \end{error}
 
 \begin{error}{Missing \right. inserted}
+(thiếu |\right.|)
 \errexa
 \begin{verbatim}
 ! Missing \right. inserted.
 <inserted text>
                 \right .
 l.10 \end{multline}
-
 ? h
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2669,29 +2736,43 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 \end{verbatim}
 \errexpl
-This error typically arises when you try to insert a linebreak inside a
-\cn{left}-\cn{right} pair of delimiters in a \env{multline} or
-\env{split} environment:
+%% This error typically arises when you try to insert a linebreak inside a
+%% \cn{left}-\cn{right} pair of delimiters in a \env{multline} or
+%% \env{split} environment:
+Lỗi này thường sinh ra khi bạn cố gắng thêm một dòng trắng bên trong
+cặp \cn{left}-\cn{right} (để tạo dấu ngoặc) trong môi trường \env{multline}
+hoặc \env{split}:
 \begin{verbatim}
 \begin{multline}
 AAA\left(BBB\\
   CCC\right)
 \end{multline}
 \end{verbatim}
-There are two possible solutions: (1)~instead of using \cn{left} and
-\cn{right}, use `big' delimiters of fixed size (\cn{bigl} \cn{bigr}
-\cn{biggl} \cn{biggr} \dots; see \secref{bigdel}); or (2)~use null
-delimiters to break up the \cn{left}-\cn{right} pair into parts for each
-line:
+%% There are two possible solutions: (1)~instead of using \cn{left} and
+%% \cn{right}, use `big' delimiters of fixed size (\cn{bigl} \cn{bigr}
+%% \cn{biggl} \cn{biggr} \dots; see \secref{bigdel}); or (2)~use null
+%% delimiters to break up the \cn{left}-\cn{right} pair into parts for each
+%% line:
+Có thể giải quyết theo hai cách: \textbf{(1)}~thay vì dùng \cn{left} và \cn{right},
+bạn hãy dùng các dấu ngoặc `big', ví dụ \cn{bigl}-\cn{bigr},
+\cn{biggl}-\cn{biggr}, \dots; xem chi tiết hơn ở \secref{bigdel};
+\textbf{(2)}~dùng dấu ngoặc rỗng để chia nhóm \cn{left}-\cn{right} thành
+nhiều phần nhỏ hơn:
 \begin{verbatim}
 AAA\left(BBB\right.\\
   \left.CCC\right)
 \end{verbatim}
-The latter solution may result in mismatched delimiter sizes;
-ensuring that they match requires using \cn{vphantom} in the line
-that has the smaller delimiter (or possibly \cn{smash} in the line that
-has the larger delimiter). In the argument of \cn{vphantom} put a copy
-of the tallest element that occurs in the other line, e.g.,
+%% The latter solution may result in mismatched delimiter sizes;
+%% ensuring that they match requires using \cn{vphantom} in the line
+%% that has the smaller delimiter (or possibly \cn{smash} in the line that
+%% has the larger delimiter). In the argument of \cn{vphantom} put a copy
+%% of the tallest element that occurs in the other line, e.g.,
+Cách giải quyết thứ hai đôi khi sinh ra hiệu quả không như ý là cho cùng
+một nhóm kích thước dấu ngoặc trái hoặc phải không giống nhau;
+khi đó, có một  mẹo nhỏ là bạn có thể dùng lệnh \cn{vphantom} cho dòng
+có kích thước dấu ngoặc nhỏ (cũng có thể dùng lệnh \cn{smash}
+trong dòng có dấu  ngoặc lớn). Đối số cho lệnh \cn{vphantom} chính là
+phần nội dung có chiều cao nhỏ nhất trong dòng. Xem ví dụ sau:
 \begin{verbatim}
 xxx \left(\int_t yyy\right.\\
   \left.\vphantom{\int_t} zzz ... \right)
@@ -2699,15 +2780,14 @@ xxx \left(\int_t yyy\right.\\
 \end{error}
 
 \begin{error}{Paragraph ended before \xxx was complete}
+(đoạn văn kết thúc trước lệnh |\xxx|)
 \errexa
 \begin{verbatim}
 Runaway argument?
-
 ! Paragraph ended before \multline was complete.
 <to be read again>
                    \par
 l.100
-
 ? h
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
@@ -2715,31 +2795,39 @@ My plan is to forget the whole thing and hope for the best.
 ?
 \end{verbatim}
 \errexpl
-This might be produced by a misspelling in the |\end{multline}| command,
-e.g.,
+% This might be produced by a misspelling in the |\end{multline}| command, e.g.,
+Điều này có thể do lỗi chính ta trước khi kết thúc môi trường với |\end{multline}|:
 \begin{verbatim}
 \begin{multline}
 ...
 \end{multiline}
 \end{verbatim}
-or by using abbreviations for certain environments, such as |\bal| and
-|\eal| for |\begin{align}| and |\end{align}|:
+%% or by using abbreviations for certain environments, such as |\bal| and
+%% |\eal| for |\begin{align}| and |\end{align}|:
+hoặc do sử dụng các từ viết tắt cho mội số môi trường, ví dụ |\bal|
+và |\eal| cho |\begin{align}| và |\end{align}|:
 \begin{verbatim}
 \bal
 ...
 \eal
 \end{verbatim}
-For technical reasons that kind of abbreviation does not work with
-the more complex displayed equation environments of the \pkg{amsmath} package
-(\env{gather}, \env{align}, \env{split}, etc.; cf.\@ \fn{technote.tex}).
+%% For technical reasons that kind of abbreviation does not work with
+%% the more complex displayed equation environments of the \pkg{amsmath} package
+%% (\env{gather}, \env{align}, \env{split}, etc.; cf.\@ \fn{technote.tex}).
+Vì lý do kỹ thuật, các cách viết tắt cho môi trường như vậy không làm việc
+với các môi trường biểu diễn phương trình phức tạp của gói \pkg{amsmath}
+như |\env{gather}|, |\env{align}|, |\env{split}|,
+\ldots Xem thêm trong \fn{technote.tex}.
 \end{error}
 
 \begin{error}{Runaway argument?}
-See the discussion for the error message
+%% See the discussion for the error message
+Xem trong phần nói về 
 \texttt{Paragraph ended before \ncn{xxx} was complete}.
 \end{error}
 
 \begin{error}{Unknown option `xxx' for package `yyy'}
+(Sử dụng gói `yyy' với tuỳ chọn `xxx' chưa được định nghĩa)
 \errexa
 \begin{verbatim}
 ! LaTeX Error: Unknown option `intlim' for package `amsmath'.
@@ -2750,21 +2838,23 @@ misspelled its name. Try typing  <return>  to proceed.
 ?
 \end{verbatim}
 \errexpl
-This means that you misspelled the option name, or the package simply
-does not have an option that you expected it to have. Consult the
-documentation for the given package.
+%% This means that you misspelled the option name, or the package simply
+%% does not have an option that you expected it to have. Consult the
+%% documentation for the given package.
+Điều này có thể do bạn gõ nhầm các tuỳ chọn khi gọi gói, hoặc đơn giản
+là tuỳ chọn bạn chỉ ra không được gói hỗ trợ. Hãy xem tài liệu của
+gói để biết chi tiết.
 \end{error}
 
 \begin{error}{Old form `\pmatrix' should be \begin{pmatrix}.}
+(Phải dùng |\begin{pmatrix}| thay cho |\pmatrix|)
 \errexa
 \begin{verbatim}
 ! Package amsmath Error: Old form `\pmatrix' should be
                          \begin{pmatrix}.
-
 See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...
-
 \pmatrix ->\left (\matrix@check \pmatrix
                                          \env@matrix
 l.16 \pmatrix
@@ -2775,92 +2865,130 @@ ill-advised in LaTeX.
 ?
 \end{verbatim}
 \errexpl
-When the \pkg{amsmath} package is used, the old forms of \cn{pmatrix},
-\cn{matrix}, and \cn{cases} cannot be used any longer because of naming
-conflicts. Their syntax did not conform with standard \LaTeX{} syntax
-in any case.
+%% When the \pkg{amsmath} package is used, the old forms of \cn{pmatrix},
+%% \cn{matrix}, and \cn{cases} cannot be used any longer because of naming
+%% conflicts. Their syntax did not conform with standard \LaTeX{} syntax
+%% in any case.
+Khi dùng gói \pkg{amsmath}, các dạng cũ \cn{pmatrix}, \cn{matrix}, \cn{cases}
+phải được thay thế bằng các môi trường tương ứng, vì lý do đụng độ về tên.
+Hơn nữa, việc dùng các lệnh đó không đúng với cú pháp chuẩn của \LaTeX{}.
 \end{error}
 
 \begin{error}{Erroneous nesting of equation structures}
+(Lỗi khi dùng các cấu trúc lồng nhau)
 \errexa
 \begin{verbatim}
 ! Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
-
 See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...
-
 l.260 \end{alignat*}
                     \end{equation*}
 \end{verbatim}
 \errexpl
-The structures \env{align}, \env{alignat}, etc., are designed
-for top-level use and for the most part cannot be nested inside some
-other displayed equation structure. The chief exception is that
-\env{align} and most of its variants can be used inside the
-\env{gather} environment.
+%% The structures \env{align}, \env{alignat}, etc., are designed
+%% for top-level use and for the most part cannot be nested inside some
+%% other displayed equation structure. The chief exception is that
+%% \env{align} and most of its variants can be used inside the
+%% \env{gather} environment.
+Các cấu trúc \env{align}, \env{alignat}, \ldots được thiết kế để dùng
+ở mức cao nhất, không thể dùng lồng bên trong các cấu trúc phương trình
+khác. Ngoại lệnh duy nhất là môi trường \env{align} và hầu hết các biến
+thể của nó có thể dùng bên trong môi trường \env{gather}.
 \end{error}
 
-\section{Warning messages}
+%\section{Warning messages}
+\section{Cảnh báo}
+
+Cảnh báo (|Warning|) không phải là lỗi.
+Khi gặp chúng, có nghĩa là bạn cần vài thay đổi
+để tối ưu việc sử dụng gói \pkg{amsmath}.
 
 \begin{error}{Foreign command \over [or \atop or \above]}
+(Lệnh lạ |\over| (hoặc |\atop|, hoặc |\above|)
 \errexa
 \begin{verbatim}
 Package amsmath Warning: Foreign command \over; \frac or \genfrac
 (amsmath)                should be used instead.
 \end{verbatim}
-\errexpl The primitive generalized fraction commands of \tex/\mdash
-\cs{over}, \cs{atop}, \cs{above}\mdash are deprecated when the
-\pkg{amsmath} package is used because their syntax is foreign to \LaTeX{}
-and \pkg{amsmath} provides native \LaTeX{} equivalents. See
-\fn{technote.tex} for further information.
+%% \errexpl The primitive generalized fraction commands of \tex/\mdash
+%% \cs{over}, \cs{atop}, \cs{above}\mdash are deprecated when the
+%% \pkg{amsmath} package is used because their syntax is foreign to \LaTeX{}
+%% and \pkg{amsmath} provides native \LaTeX{} equivalents. See
+%% \fn{technote.tex} for further information.
+\errexpl
+Các lệnh (|primitive|) tạo phân số của \tex/\mdash
+\cs{over}, \cs{atop}, \cs{above}\mdash nên được bỏ khi dùng gói \pkg{amsmath},
+vì cú pháp của chúng xa lạ so với \LaTeX{} chuẩn. Hãy dùng các dạng
+tương đương mà gói \pkg{amsmath} cung cấp. Xem chi tiết hơn
+ở \fn{technote.tex}.
 \end{error}
 
 \begin{error}{Cannot use `split' here}
+(Không thể dùng `split' ở đây)
 \errexa
 \begin{verbatim}
 Package amsmath Warning: Cannot use `split' here;
 (amsmath)                trying to recover with `aligned'
 \end{verbatim}
-\errexpl The \env{split} environment is designed to serve as the entire
-body of an equation, or an entire line of an \env{align} or \env{gather}
-environment. There cannot be any printed material before or
-after it within the same enclosing structure:
+\errexpl
+%% The \env{split} environment is designed to serve as the entire
+%% body of an equation, or an entire line of an \env{align} or \env{gather}
+%% environment. There cannot be any printed material before or
+%% after it within the same enclosing structure:
+Môi trường \env{split} được thiết kế để biểu diễn một phần của
+nội dung phương trình, hoặc nguyên một dòng bên trong môi trường
+\env{align} hoặc \env{gather}. Môi trường \env{split} không thể dùng
+% để biểu diễn nội dung trước hoặc sau
+như trong ví dụ sau:
 \begin{verbatim}
 \begin{equation}
-\left\{ % <-- Not allowed
+\left\{ % <-- không được phép
 \begin{split}
 ...
 \end{split}
-\right. % <-- Not allowed
+\right. % <-- không được phép
 \end{equation}
 \end{verbatim}
+Nếu bạn vẫn cố tình dùng như trên, gói \pkg{amsmath} sẽ tự động
+hiểu thành môi trường \env{aligned}.
 \end{error}
 
-\section{Wrong output}
+%% \section{Wrong output}
+\section{Kết quả không như ý}
 
-\subsection{Section numbers 0.1, 5.1, 8.1 instead of 1, 2, 3}
+
+%% \subsection{Section numbers 0.1, 5.1, 8.1 instead of 1, 2, 3}
+\subsection{Đánh số mục 0.1, 5.1, 8.1 thay vì 1, 2, 3}
+
 \label{numinverse}
-
-This most likely means that you have the arguments for \cn{numberwithin}
-in reverse order:
+%% This most likely means that you have the arguments for \cn{numberwithin}
+%% in reverse order:
+Khả năng lớn nhất là bạn đã dùng lệnh \cn{numberwithin}
+với các đối số theo thứ tự ngược:
 \begin{verbatim}
 \numberwithin{section}{equation}
 \end{verbatim}
-That means `print the section number as \textit{equation
-number}.\textit{section number} and reset to 1 every time an equation
-occurs' when what you probably wanted was the inverse
+%% That means `print the section number as \textit{equation
+%% number}.\textit{section number} and reset to 1 every time an equation
+%% occurs' when what you probably wanted was the inverse
+Dùng như trên, nghĩa là bạn sẽ đánh số mục theo phương trình,
+theo dạng \textit{chỉ số phương trình}.\textit{chỉ số mục}
+và đặt chỉ số mục về lại 1 mỗi khi xuất hiện phương trình mới.
+Đúng ra, bạn phải dùng như sau:
 \begin{verbatim}
 \numberwithin{equation}{section}
 \end{verbatim}
 
-\subsection{The \cn{numberwithin} command had no effect on equation
-numbers}
+%% \subsection{The \cn{numberwithin} command had no effect on equation numbers}
+\subsection{Lệnh \cn{numberwithin} không có tác dụng}
 
-Are you looking at the first section in your document? Check the section
-numbers elsewhere to see if the problem is the one described in
-\secref{numinverse}.
+%% Are you looking at the first section in your document? Check the section
+%% numbers elsewhere to see if the problem is the one described in
+%% \secref{numinverse}.
+Có lẽ bạn đang ở mục đầu tiên của tài liệu? Kiểm tra chỉ số mục ở các vị 
+trí khác để kiểm tra xem, trục trặc có thể đã nói ở \secref{numinverse}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
