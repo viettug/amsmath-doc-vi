@@ -1,15 +1,26 @@
-DOC=amsldoc-doc-vi
-VERION=`gawk -F '=' '{print $$2}' $(DOC).ktvnum`
+DOC = amsldoc-vi
+VERSION = `gawk -F '=' '{print $$2}' $(DOC).ktvnum`
 
-doc:
-	@latex $(DOC)
-	@latex $(DOC)
+default: doc
+
+finalflag:
+	@echo '' > finalized
+
+doc: finalflag
+	@pdflatex $(DOC)
+	@pdflatex $(DOC)-print
+	@rm -f finalized
 	
 clean:
-	@rm -fv *.log *.idx *.aux *.dvi *.bbl *.blg *.toc *.idx *.tps *.ps *.ilg *.tcp *~ *.ind
+	@rm -fv finalized *.out *.log *.idx *.aux *.dvi *.bbl *.blg *.toc *.idx *.tps *.ps *.ilg *.tcp *~ *.ind
 	
-cleanall:
-	@rm -fv *.pdf *~
+cleanall: clean
+	@rm -frv *.pdf *~ ./amsldoc-vi/
 
 distro:
-	@echo $(VERSION)
+	@mkdir -p ./amsldoc-vi/src
+	@mkdir -p archive
+	@rm -f archive/$(DOC)-$(VERSION).tgz
+	@cp README TODO THANKS *.pdf ./amsldoc-vi
+	@cp amsldoc-*.tex Makefile ./amsldoc-vi/src/
+	@tar cfvz ./archive/$(DOC)-$(VERSION).tgz ./amsldoc-vi
