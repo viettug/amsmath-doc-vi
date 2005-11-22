@@ -1,21 +1,30 @@
 USER's GUIDE for the AMSMATH package (version 2.0)
 --------------------------------------------------
 
-* source: TEXMF/source/latex/amsmath/*
-* translated into vietnamese by kyanh <kyanh@o2.pl>
+* original work:
+	TEXMF/source/latex/amsmath/*
+
+* Translated into vietnamese by kyanh <kyanh@o2.pl>
+
 * License: LPPL
-* please report any bugs, suggestions to kyanh <kyanh@o2.pl>
-* file list
+* LPPL maintenance status: "maintained"
+
+* The latest version of this work can be found at:
+	http://download.viettug.org/mirror1.php?files=ams
+
+* Please report any bugs, suggestions to kyanh <kyanh@o2.pl>
+
+* File list
 	README (this file)
 	TODO
 	THANKS
-	amsldoc-vi.pdf
-	amsldoc-vi-print.pdf
+	amsldoc-vi.pdf (compiled work)
+	amsldoc-vi-print.pdf (compiled work, printable version)
 	src/
 	src/header.tex
 	src/amsldoc-vi.tex
 	src/amsldoc-vi-print.tex
 	src/Makefile
 
-----------------
+---
 kyanh [2004/11/04, 2005/11/17]
