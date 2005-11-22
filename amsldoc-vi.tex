@@ -1,3 +1,40 @@
+%%
+%% This is the file `amsldoc-vi(-print).tex'
+%% 
+%% ----------------------------------------------------------
+%% Copyright (C) 2005 kyanh <kyanh at o2 dot pl>
+%% ----------------------------------------------------------
+%% 
+%% This is a maintained work as described in
+%%     http://www.latex-project.org/lppl.txt
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%     http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2003/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% Current maintainer of this work is kyanh <kyanh at o2 dot pl>.
+%% 
+%% The following files constitute the `amsldoc-vi' bundle
+%% and *MUST* be distributed as a whole
+%% 
+%%  README
+%%  TODO
+%%  THANKS
+%%  amsldoc-vi.pdf
+%%  amsldoc-vi-print.pdf
+%%  src/
+%%  src/header.tex
+%%  src/amsldoc-vi.tex
+%%  src/amsldoc-vi-print.tex
+%%  src/Makefile
+%%
+
 \input header.tex
 
 \pagestyle{headings}
@@ -128,20 +165,18 @@ Gói \pkg{amsmath} dành cho \LaTeX{} cung cấp nhiều tiện ích để |type
 các tài liệu Toán học phức tạp. Gói này có trong hầu hết các bản phân phối
 mới của \LaTeX{}. Để lấy các thông tin cập nhật về gói này, bạn xem ở
 
-\medskip
-\rightline{\url{http://www.ams.org/tex/amsmath.html}}
-\rightline{\url{ftp://ftp.ams.org/pub/tex/}}
+\centerline{\url{http://www.ams.org/tex/amsmath.html}}
+\centerline{\url{ftp://ftp.ams.org/pub/tex/}}
 \medskip
 
 % This documentation describes the features of the \pkg{amsmath} package
 % and discusses how they are intended to be used. It also covers some
 % ancillary packages:
-Tài liệu này mô tả các tính năng và của gói \pkg{amsmath} và thảo luận
+Tài liệu này mô tả các tính năng của gói \pkg{amsmath} và thảo luận
 về các hướng sử dụng chúng. Tài liệu cũng đề cập sơ lược về các gói
-\begin{ctab}{ll}
-\pkg{amsbsy}& \pkg{amstext}\\
-\pkg{amscd}& \pkg{amsxtra}\\
-\pkg{amsopn}
+\begin{ctab}{lllll}
+\pkg{amsbsy}& \pkg{amstext} &
+\pkg{amscd}& \pkg{amsxtra} & \pkg{amsopn}
 \end{ctab}
 % These all have something to do with the contents of math formulas. For
 % information on extra math symbols and math fonts, see \cite{amsfonts}
@@ -152,21 +187,21 @@ về các hướng sử dụng chúng. Tài liệu cũng đề cập sơ lược
 Các gói này đều liên quan đến việc |typseset| biểu thức toán học.
 Thông tin về các ký hiệu và |font| mở rộng, xem ở \cite{amsfonts} và
 
-\medskip
-\rightline{\url{http://www.ams.org/tex/amsfonts.html}}
+\centerline{\url{http://www.ams.org/tex/amsfonts.html}}
 \medskip
 \noindent
-Tài liệu về gói \pkg{amsthm}, các lớp\footnote{|documentclass|} AMS (\cls{amsart},
+Tài liệu về gói \pkg{amsthm}, các lớp %\footnote{|documentclass|}
+AMS (\cls{amsart},
 \cls{amsbook}, etc.\@) có thể tìm thấy trong \cite{amsthdoc}, \cite{instr-l}
 và 
 
-\medskip
-\rightline{\url{http://www.ams.org/tex/author-info.html}}
+\centerline{\url{http://www.ams.org/tex/author-info.html}}
 
 % If you are a long-time \LaTeX{} user and have lots of mathematics in what
 % you write, then you may recognize solutions for some familiar problems
 % in this list of \pkg{amsmath} features:
 \bigskip
+\pagebreak[3]
 Nếu bạn đã làm việc lâu dài với \LaTeX{} và phải |typeset| rất nhiều các biểu thức
 toán học, thì với gói \pkg{amsmath}, bạn có thể tìm thấy giải pháp
 cho những vấn đề hay gặp nhất:
@@ -179,7 +214,7 @@ cho những vấn đề hay gặp nhất:
 % selection of the correct font style and size (even when used in
 % sub- or superscripts).
 Dễ dàng định nghĩa toán tử, hàm toán học mới (tương tự như \cn{sin}, \cn{cos});
-các toán tử mới sẽ tự động canh chỉnh kích thước, kiểu |font|
+các toán tử mới sẽ tự động canh chỉnh kích thước, |font|
 và khoảng cách tương quan với các phần tử khác trong biểu thức.
 
 \item
@@ -204,7 +239,7 @@ trong môi trường \env{equation} (không giống như \env{eqnarray}).
 % A way to produce multiline subscripts as are often used with
 % summation or product symbols.
 Có thể tạo chỉ số dưới, chỉ số trên với nhiều dòng (thường gặp khi 
-làm việc với các ký hiệu tổng, tích)
+làm việc với các ký hiệu tổng, tích).
 
 \item
 % An easy way to substitute a variant equation number for a given
@@ -224,7 +259,8 @@ từ một nhóm các phương trình. Việc đánh số này là \emph{tự đ
 \medskip
 Gói \pkg{amsmath} được phân phối cùng với một số gói bổ trợ
 
-\begin{description}
+\medskip
+\begin{lentry}
 \item[\pkg{amsmath}]
 % 	Primary package, provides various features for
 % 	displayed equations and other mathematical constructs.
@@ -262,8 +298,7 @@ Gói \pkg{amsmath} được phân phối cùng với một số gói bổ trợ
 % documents created using version 1.1.
 	Gói bổ sung, nhằm bảo đảm tương thích với tài liệu dùng phiên bản 1.1
 	của \pkg{amsmath}. Cung cấp: \cn{fracwithdelims}, \cn{accentedsymbol},...
-
-\end{description}
+\end{lentry}
 
 % The \pkg{amsmath} package incorporates \pkg{amstext}, \pkg{amsopn}, and
 % \pkg{amsbsy}. The features of \pkg{amscd} and \pkg{amsxtra}, however,
@@ -280,14 +315,17 @@ số bổ sung của lệnh nạp gói \cn{usepakage}. Các tùy chọn cách nh
 dấu phảy. Ví dụ:
 
 \medskip
-\verb"\usepackage[intlimits]{amsmath}"\\
-\indent\verb"\usepackage[sumlimits,intlimits]{amsmath}"
+\begin{verbatim}
+  \usepackage[intlimits]{amsmath}
+  \usepackage[sumlimits,intlimits]{amsmath}
+\end{verbatim}
 
 \medskip
 % The \pkg{amsmath} package has the following options:
 Gói \pkg{amsmath} có các tùy chọn sau đây:
-\begin{description}
 
+\medskip
+\begin{lentry}
 \item[\opt{centertags}] (mặc định)
 %For a split equation, place equation
 %numbers\index{equation numbers!vertical placement} vertically centered
@@ -365,8 +403,7 @@ các toán tử này theo truyền thống thường có chỉ số đặt bên 
 % equations!centering}
 Biểu diễn phương trình với lề trái cố định; theo mặc định, các phương
 trình được canh giữa (do đó, lề trái của chúng \emph{thay đổi}).
-
-\end{description}
+\end{lentry}
 
 % The \pkg{amsmath} package also recognizes the following options which
 % are normally selected (implicitly or explicitly) through the
@@ -379,9 +416,11 @@ gói \pkg{amsmath} nhận biết điều này và do đó bạn không cần l�
 khi nạp gói bằng \cn{usepackage}|{amsmath}|:
 
 \medskip
-\verb"\documentclass[reqno]{report}"\par
-\indent\verb"\usepackage{amsmath}"\% có tác dụng như \verb"\usepackage[reqno]{amsmath}"
-
+\begin{verbatim}
+  \documentclass[reqno]{report}
+  \usepackage{amsmath}
+  % có tác dụng như \usepackage[reqno]{amsmath}
+\end{verbatim}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\chapter{Displayed equations}
@@ -397,13 +436,13 @@ Gói \pkg{amsmath} cung cấp thêm các môi trường biểu diễn phương t
 \begin{verbatim}
   equation     equation*     align       align*
   gather       gather*       flalign     flalign*
-  multline     multline*     alignat     alignat*
-  split
+  multline     multline*     alignat     alignat*    split
 \end{verbatim}
 % (Although the standard \env{eqnarray} environment remains available,
 % it is better to use \env{align} or \env{equation}+\env{split} instead.)
 (Mặc dù môi trường chuẩn \env{eqnarray} vẫn dùng được, nhưng tốt hơn hết
-nên dùng môi trường \env{align} hoặc tổ hợp \env{equation}+\env{split}.)
+nên dùng môi trường \env{align} hoặc tổ hợp \env{equation}+\env{split}
+để thay thế cho \env{eqnarray}.)
 
 \medskip
 
@@ -446,7 +485,7 @@ và \fn{subeqn.tex} được phân phối cùng với tài liệu này.
 % only \emph{inside} one of the others. It cannot be used inside
 % \env{multline}, however.
 \medskip
-Môi trường \env{split} là một dạng đặc biệt, chỉ có thể được dùng
+Môi trường \env{split} là dạng đặc biệt, chỉ có thể được dùng
 bên trong các môi trường khác. Tuy nhiên, nó lại không thể dùng bên
 trong \env{multline}.
 
@@ -632,7 +671,8 @@ Trong môi trường này, bạn dùng \cn{\\} để tách các dòng.
 Dòng đầu tiên sẽ canh ở lề trái, dòng cuối cùng được canh ở lề phải;
 ngay trước dòng đầu tiên và ngay sau dòng cuối cùng là khoảng trắng |indent|
 được cung cấp bởi biến độ dài \cn{multlinegap}.
-Các dòng còn lại sẽ được canh giữa trang, trừ khi bạn dùng tùy chọn \opt{fleqn}.
+Các dòng còn lại sẽ được canh giữa trang, trừ khi bạn dùng tùy chọn \opt{fleqn}
+khi nạp gói \pkg{amsmath}.
 
 % Like \env{equation}, \env{multline} has only a single equation number
 % (thus, none of the individual lines should be marked with \cn{notag}).
@@ -640,11 +680,11 @@ Các dòng còn lại sẽ được canh giữa trang, trừ khi bạn dùng tù
 % first line (\opt{leqno} option); vertical centering as for \env{split}
 % is not supported by \env{multline}.
 \medskip
-Giống như \env{equation}, môi trường \env{multline} chỉ đánh số tất cả
+Giống như \env{equation}, môi trường \env{multline} đánh số tất cả
 các dòng của nó bởi đúng một chỉ số (do đó, bạn không thể dùng \cn{notag}
 cho riêng dòng nào trong môi trường). Chỉ số được đánh sẽ được ở dòng
 cuối cùng (tùy chọn \opt{reqno}) hoặc dòng đầu tiên (tùy chọn \opt{leqno});
-kiểu đánh số canh giữ như \env{split} không được hỗ trợ.
+kiểu đánh số canh giữa như \env{split} không được hỗ trợ.
 
 % It's possible to force one of the middle lines to the left or right with
 % commands \cn{shoveleft}, \cn{shoveright}. These commands take the entire
@@ -653,7 +693,7 @@ kiểu đánh số canh giữ như \env{split} không được hỗ trợ.
 \medskip
 Có thể làm cho các dòng giữa của môi trường dịch chuyển qua trái hoặc
 qua phải bằng cách lệnh \cn{shoveleft} hay \cn{shoveright}.
-Các lệnh này sẽ nhận cả dòng cần dịch chuyển làm tham số
+Các lệnh này sẽ nhận cả dòng cần dịch chuyển làm đối số
 (nhưng trừ ra \cn{\\} ở cuối dòng)
 \begin{multline}
 \framebox[.65\columnwidth]{A}\\
@@ -674,7 +714,7 @@ Các lệnh này sẽ nhận cả dòng cần dịch chuyển làm tham số
 
 % The value of \cn{multlinegap} can be changed with the usual \LaTeX{}
 % commands \cn{setlength} or \cn{addtolength}.
-Giái trị của biến độ dài \cn{multlinegap} có thể thay đổi nhờ các
+Giá trị của biến độ dài \cn{multlinegap} có thể thay đổi nhờ các
 lệnh của \LaTeX{} là \cn{setlength} và \cn{addtolength}.
 
 %\section{Split equations with alignment}
@@ -710,10 +750,11 @@ H_c&=\frac{1}{2n} \sum^n_{l=0}(-1)^{l}(n-{l})^{p-2}
 \end{split}\end{equation}
 
 \begin{verbatim}
-\begin{equation}\label{e:barwq}
+\begin{equation}
+\label{e:barwq}
 \begin{split}
 H_c &=\frac{1}{2n} \sum^n_{l=0}(-1)^{l}(n-{l})^{p-2}
-	    \sum_{l _1+\dots+ l _p=l}\prod^p_{i=1}\binom{n_i}{l _i}
+        \sum_{l _1+\dots+ l _p=l}\prod^p_{i=1}\binom{n_i}{l _i}
 \\  &\quad\cdot[(n-l )-(n_i-l _i)]^{n_i-l _i}
         \cdot\Bigl[(n-l )^2-\sum^p_{j=1}(n_i-l _i)^2\Bigr].
 \end{split}
@@ -725,7 +766,7 @@ H_c &=\frac{1}{2n} \sum^n_{l=0}(-1)^{l}(n-{l})^{p-2}
 % visible material.
 Phần phương trình biểu diễn nhờ \env{split}
 nên được xem là một phần riêng biệt;
-lệnh \cn{label} đặt bên trong môi trường sẽ không có tác dụng.
+lệnh \cn{label} đặt bên trong môi trường này sẽ không có tác dụng.
 
 %\section{Equation groups without alignment}
 \section{Nhóm phương trình không canh cột}
@@ -747,7 +788,7 @@ nào bên trong \env{gather} cũng có thể là ở dạng
   phương trình thứ nhất\\
   \begin{split}
     phương trình & thứ hai\\
-           & với hai dòng
+                 & với hai dòng
   \end{split}
   \\
   phương trình thứ ba
@@ -782,6 +823,7 @@ x+x'&=y+y' & X+X'&=Y+Y' & a'b&=c'b
 \end{verbatim}
 % Line-by-line annotations on an equation can be done by judicious
 % application of \cn{text} inside an \env{align} environment:
+\medskip
 Có thể thêm chú thích cho phương trình (nằm cùng dòng với phương trình)
 bằng cách dùng lệnh \cn{text} bên trong môi trường \env{align}:
 \begin{align}
@@ -803,10 +845,11 @@ x& = y_1-y_2+y_3-y_5+y_8-\dots
 % equations to be explicitly specified. This environment takes one argument,
 % the number of \qq{equation columns}: count the maximum number of \verb'&'s
 % in any row, add 1 and divide by 2.
+\medskip
 Biến thể \env{alignat} của môi trường \env{align} cho phép xác định khoảng
 cách (theo chiều ngang), nhờ đó sẽ tiết kiệm không gian hơn. Môi trường này
 nhận một tham số, là \emph{"số cột phương trình"}. Để có số này, bạn
-đếm số dấu |&| trong các phương trình, chọn ra số lớn nhất, cộng số đó
+đếm số dấu |&| trong các dòng, chọn ra số lớn nhất, cộng số đó
 với 1 rồi chia kết quả  cho 2. So sánh ví dụ dưới đây với ví dụ ở ngay trên.
 \begin{alignat}{2}
 x& = y_1-y_2+y_3-y_5+y_8-\dots
@@ -871,12 +914,34 @@ ví dụ:
 \medskip
 Giống như \env{array}, các biến thể \texttt{-ed} nhận tham số tùy chọn (bổ sung)
 \verb'[t]' hoặc \verb'[b]' để chỉ vị trí biểu diễn (`t' cho top-ở trên;
-`b' cho bottom-ở dưới)
+`b' cho bottom-ở dưới). So sánh ví dụ sau với ví dụ trước:
+\begin{equation*}
+\left.% dùng \left. để bỏ đi dấu ngoặc bên trái
+\begin{aligned}[t]
+  B'&=-\partial\times E,\\
+  E'&=\partial\times B - 4\pi j,
+\end{aligned}
+\right\}
+\qquad \text{Phương trình Maxwell}
+\end{equation*}
+\begin{verbatim}
+\begin{equation*}
+\left.
+\begin{aligned}[t] % dùng tham số bổ sung [t]
+  B'&=-\partial\times E,\\
+  E'&=\partial\times B - 4\pi j,
+\end{aligned}
+\right\}
+\qquad \text{Phương trình Maxwell}
+\end{equation*}
+\end{verbatim}
 
 % \qq{Cases} constructions like the following are common in
 % mathematics:
 \medskip
-Biến thể \env{cases} dùng để \emph{chia các trường hợp}:
+Biến thể \env{cases} dùng để \emph{chia các trường hợp}.
+Có thể dùng môi trường \env{align}, \env{aligned},... để thay thế,
+nhưng \env{cases} là cách giúp bạn tiết kiệm thời gian:
 \begin{equation}\label{eq:C}
 P_{r-j}=
   \begin{cases}
@@ -898,8 +963,9 @@ P_{r-j}=\begin{cases}
 toán |$...$| bên trong \cn{text}.
 
 \medskip
-Cần nhớ: các biến thể \env{cases} và \env{-ed} chỉ được dùng bên trong
-các môi trường phương trình khác\mdash tương tự như \env{split}.
+\underline{\textbf{Cần nhớ:}}\\
+{Các biến thể \env{cases} và \env{-ed} chỉ được dùng bên trong
+các môi trường phương trình khác\mdash tương tự như \env{split}.}
 
 
 %\section{Adjusting tag placement}
@@ -946,12 +1012,21 @@ lại mỗi khi bạn thay đổi nội dung tài liệu.
 % environments, as is usual in \LaTeX{}. 
 Bạn có thể dùng \cn{\\}|[|\<dimension>|]| để thêm các v-khoảng cách giữa
 các dòng trong mọi môi trường biểu diễn phương trình của gói \pkg{amsmath};
-điều này cũng tương tự trong \LaTeX{}.
+điều này cũng tương tự trong \LaTeX{}. Các khoảng cách có thể âm. Ví dụ
 % When the \pkg{amsmath} package is
 % in use \ii{page breaks} between equation lines are normally disallowed;
 % the philosophy is that page breaks in such material should receive
 % individual attention from the author.
-
+\begin{align}
+f(x) &= g(x)\\[1mm]
+f(x) &=\frac{h(x)}2
+\end{align}
+\begin{verbatim}
+\begin{align}
+f(x) &= g(x)\\[1mm]% với \\[1mm], hai dòng tách bạch hơn...
+f(x) &=\frac{h(x)}2
+\end{align}
+\end{verbatim}
 
 \medskip
 Khi dùng gói \pkg{amsmath}, việc \ii{ngắt trang} giữa các dòng của phương trình
@@ -1065,7 +1140,7 @@ trong chương 1, 2, v.v...\mdash bạn có thể định nghĩa lại lệnh
 \medskip
 Cách làm như trên cho kết quả như ý, nhưng có điều bất tiện là chỉ số
 phương trình sẽ không tự động đặt về 0 khi chuyển%
-\footnote{ở mục 1, các phương trình được đánh số (1.1), (1.2), \ldots;
+\footnote{Ở mục 1, các phương trình được đánh số (1.1), (1.2), \ldots;
 còn qua mục 2, chỉ số phải bắt đầu từ (2.1) rồi đến (2.2), \ldots;
 nghĩa là ta phải đặt bộ đếm về 0 khi vừa qua mục 2.}
 % ----------------------------------------------------------------------
@@ -1075,8 +1150,8 @@ từ mục này qua mục khác, và bạn phải làm điều đó bằng tay n
 % numbers!hierarchy} \cn{numberwithin}. To have equation numbering tied to
 % section numbering, with automatic reset of the equation counter, write
 Để cuộc sống dễ dàng hơn, gói \pkg{amsmath} cung cấp lệnh \cn{numberwithin};
-nhờ lệnh này, bạn có thể đánh số phương trình theo mục, với chỉ số phương trình
-\emph{tự động đặt về 0} khi sang mục mới.
+nhờ lệnh này, bạn có thể đánh số phương trình theo mục, đồng thời
+chỉ số phương trình \emph{tự động đặt về 0} khi sang mục mới.
 
 \medskip
 \begin{verbatim}
@@ -1086,7 +1161,7 @@ nhờ lệnh này, bạn có thể đánh số phương trình theo mục, với
 \medskip
 % As its name implies, the \cn{numberwithin} command can be applied to
 % any counter, not just the \texttt{equation} counter.
-Để ý rằng, lệnh \cn{numberwithin} có tác dụng đối với mọi bộ đếm, chứ
+Lệnh \cn{numberwithin} có tác dụng đối với mọi bộ đếm, chứ
 không riêng gì bộ đếm \texttt{equation}.
 
 %\subsection{Cross references to equation numbers}
@@ -1246,7 +1321,7 @@ không có các biến thể |p|,|b|,|B|,|v|,|V| của \env{smallmatrix}.
 % columns. For example,
 \medskip
 Có một lệnh hết sức tiện lợi, là \cn{hdotsfor}|{|\<number>|}|.
-Lệnh này sẽ sinh ra dãy các dấu chấm lửng trong matrix. Tham số
+Lệnh này sẽ sinh ra dãy các dấu chấm lửng trong |matrix|. Tham số
 của lệnh là số cột cần bỏ qua. Quan sát ví dụ dưới đây
 
 \medskip
@@ -2497,21 +2572,24 @@ bản năm 1997 hoặc cao hơn.
 
 \section{General remarks}
 
-This is a supplement to Chapter~8 of the \LaTeX{} manual \cite{lamport} (first
-edition: Chapter~6). For the reader's convenience, the set of error
-messages discussed here overlaps somewhat with the set in that chapter,
-but please be aware that we don't provide exhaustive coverage here.
-The error messages are arranged in alphabetical order, disregarding
-unimportant text such as |! LaTeX Error:| at the beginning, and
-nonalphabetical characters such as \qc{\\}. Where examples are given, we
-show also the help messages that appear on screen when you respond to an
-error message prompt by entering |h|.
+%% This is a supplement to Chapter~8 of the \LaTeX{} manual \cite{lamport} (first
+%% edition: Chapter~6). For the reader's convenience, the set of error
+%% messages discussed here overlaps somewhat with the set in that chapter,
+%% but please be aware that we don't provide exhaustive coverage here.
+%% The error messages are arranged in alphabetical order, disregarding
+%% unimportant text such as |! LaTeX Error:| at the beginning, and
+%% nonalphabetical characters such as \qc{\\}. Where examples are given, we
+%% show also the help messages that appear on screen when you respond to an
+%% error message prompt by entering |h|.
+Trong các ví dụ sau đây, cùng với thông báo lỗi là phần giúp đỡ. Khi biên dịch
+gặp lỗi, nếu bạn gõ |h| từ dấu nhắc của \LaTeX{} bạn sẽ nhận được phần giúp đỡ này.
 
 \medskip
 %% There is also a section discussing some output errors, i.e., instances
 %% where the printed document has something wrong but there was no \LaTeX{}
 %% error during typesetting.
-Đôi khi bạn nhận thông báo lỗi
+Mục này còn nói đến một số trường hợp việc biên dịch không có lỗi gì,
+nhưng kết quả lại khá lạ lùng so với ý của bạn.
 
 \section{Thông báo lỗi}
 
