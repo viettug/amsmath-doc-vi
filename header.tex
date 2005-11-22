@@ -1,3 +1,9 @@
+%%
+%% This is file `header.tex'.
+%% This file is part of `amsldoc-vi' bundle.
+%% See `amsldoc-vi.tex' for copyright information.
+%%
+
 \newif\ifpdf
 \ifx\pdfoutput\undefined\relax\else\ifnum\pdfoutput>0\relax\pdftrue\fi\fi
 
@@ -8,7 +14,7 @@
 	\usepackage[monochrome]{color}
 	\advance \topmargin by -3\baselineskip
 	\advance \textheight by 5\baselineskip
-	\usepackage{lmodern}
+	%\usepackage{lmodern}
 \fi
 
 % =====================================================================
@@ -22,18 +28,14 @@
 \usepackage{amsmath}
 \usepackage{amscd}
 \usepackage{indentfirst}
-\usepackage[left=25mm,right=25mm,top=25mm,bottom=25mm]{geometry}
+\usepackage[left=25mm,right=25mm,top=25mm,bottom=20mm]{geometry}
 
 \IfFileExists{/home/users/kyanh/.is.m0nster.}%
 {
 	\IfFileExists{finalized}%
 	{
 		\newcount\buildnum
-		\ifx\printversion\undefined
-			\input \jobname.ktvnum
-		\else
-			\input amsldoc-vi.ktvnum	
-		\fi
+		\input amsldoc-vi.ktvnum	
 	}
 	{
 		\usepackage{ktv-buildnum}}%
@@ -295,7 +297,7 @@
 \ifpdf
 	\usepackage[colorlinks,draft=false,
 		pdftitle={AMSLaTeX Manual, v2.0, Vietnamese edition},
-		pdfauthor={American Mathematical Society, Translator:kyanh<kyanh@o2.pl>},
+		pdfauthor={American Mathematical Society. Translator:kyanh<kyanh@o2.pl>},
 		pdfsubject={Advanced Math Typesetting},
 		pdfkeywords={math, typesetting, formulas}]{hyperref}
 	\input pd1supp.def
@@ -319,5 +321,7 @@
 
 \def\errexa{\par\vskip2mm\noindent\textit{Ví dụ:}\par\noindent}
 \def\errexpl{\par\vskip2mm\noindent\textit{Giải thích:}\par\noindent}
+
+\parindent0pt
 
 \endinput
