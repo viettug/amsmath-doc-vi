@@ -20,10 +20,12 @@ USER's GUIDE for the AMSMATH package (version 2.0)
 	THANKS
 	amsldoc-vi.pdf (compiled work)
 	amsldoc-vi-print.pdf (compiled work, printable version)
+	subeqn-vi.pdf
 	src/
 	src/header.tex
 	src/amsldoc-vi.tex
 	src/amsldoc-vi-print.tex
+	src/subeqn-vi.tex
 	src/Makefile
 
 ---
