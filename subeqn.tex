@@ -1,46 +1,11 @@
 %%% ====================================================================
-%%%  @LaTeX-file{
-%%%     filename  = "subeqn.tex",
-%%%     version   = "1.2c",
-%%%     date      = "1999/11/29",
-%%%     time      = "14:49:29 EST",
-%%%     checksum  = "29866 202 668 6426",
-%%%     author    = "American Mathematical Society",
-%%%     copyright = "Copyright 1999 American Mathematical Society,
-%%%                  all rights reserved.  Copying of this file is
-%%%                  authorized only if either:
-%%%                  (1) you make absolutely no changes to your copy,
-%%%                  including name; OR
-%%%                  (2) if you do make changes, you first rename it
-%%%                  to some other name.",
-%%%     address   = "American Mathematical Society,
-%%%                  Technical Support,
-%%%                  Electronic Products and Services,
-%%%                  P. O. Box 6248,
-%%%                  Providence, RI 02940,
-%%%                  USA",
-%%%     telephone = "401-455-4080 or (in the USA and Canada)
-%%%                  800-321-4AMS (321-4267)",
-%%%     FAX       = "401-331-3842",
-%%%     email     = "tech-support@ams.org (Internet)",
-%%%     supported = "yes",
-%%%     keywords  = "latex, amslatex, ams-latex, amstex",
-%%%     abstract  = "This is part of the AMS-\LaTeX{} distribution.
-%%%                  It is a sample document illustrating the use of
-%%%                  the subequations environment and the effect of
-%%%                  the fleqn option.",
-%%%     docstring = "The checksum field above contains a CRC-16
-%%%                  checksum as the first value, followed by the
-%%%                  equivalent of the standard UNIX wc (word
-%%%                  count) utility output of lines, words, and
-%%%                  characters.  This is produced by Robert
-%%%                  Solovay's checksum utility.",
-%%%  }
-%%% ====================================================================
 \documentclass[fleqn]{article}
 
-\title{Test of subequations environment}
-\author{mjd}
+\usepackage[utf8x]{vietnam}
+
+\title{Kiểm tra môi trường `subequations'}
+\author{kyanh}
+\date{\today}
 
 \usepackage{amsmath}
 \numberwithin{equation}{section}
@@ -73,32 +38,44 @@
   \endgroup}
 \makeatother
 
-\begin{document}
-\section{Prime equation numbers}
+\parindent0pt
 
-First an equation.
+\begin{document}
+
+\maketitle
+
+\section{Đánh số thứ cấp}
+
+Đây là phương trình đầu tiên.
 \begin{equation}\label{e:previous}
 A=B
 \end{equation}
-That was equation \eqref{e:previous}.
+Đó là phương trình \eqref{e:previous}.
 
-Then the same, with a prime on the number.\checkref
+Ta sẽ sử dụng cùng chỉ số, nhưng với dấu phảy (đánh số thứ cấp).\checkref
 \begin{equation}
 \tag{\ref{e:previous}$'$}\label{e:prevprime}
 C=D
 \end{equation}
-And that was equation \eqref{e:prevprime}.
+Phương trình trên là \eqref{e:prevprime}.
 
-Notice, by the way, that when a \verb"\ref" occurs inside a \verb"\tag",
-and that \verb"\tag" is then \verb"\label"'d, a \verb"\ref" for the the
-second \verb"\label" requires \emph{three} runs of \LaTeX{} in order to
-get the proper value. (If you run through the logic of \LaTeX{}'s
-cross-referencing mechanisms as they apply in this case, you will see
-that this is necessary.)
+%% Notice, by the way, that when a \verb"\ref" occurs inside a \verb"\tag",
+%% and that \verb"\tag" is then \verb"\label"'d, a \verb"\ref" for the the
+%% second \verb"\label" requires \emph{three} runs of \LaTeX{} in order to
+%% get the proper value. (If you run through the logic of \LaTeX{}'s
+%% cross-referencing mechanisms as they apply in this case, you will see
+%% that this is necessary.)
+\medskip 
+Chú ý rằng, khi sử dụng \verb"\ref" bên trong lệnh \verb"\tag",
+và sau đó \verb"\tag" sinh ra được dùng làm nhãn với \verb"\label", bạn
+cần phải biên dịch tài liệu ít nhất ba lần để có các tham khảo chính xác.
+Điều này là tự nhiên, nếu bạn hiểu nguyên lý thực hiện tham khảo chéo của \LaTeX{}.
 
-\section{Subnumbered equations}
 
-Here is a,b,c sub-numbering.
+\section{Đánh số phương trình con}
+
+%Here is a,b,c sub-numbering.
+Đây là ví dụ.
 \begin{subequations}
 \begin{eqnarray}
 A&=&B\\
@@ -106,47 +83,64 @@ D&=&C \label{e:middle}\\
 E&=&F
 \end{eqnarray}
 \end{subequations}
-That was produced with the \env{eqnarray} environment; the middle line
-was labeled as \eqref{e:middle}.
+%% That was produced with the \env{eqnarray} environment; the middle line
+%% was labeled as \eqref{e:middle}.
+Ba phương trình trên được bố trí nhờ môi trường \env{eqnarray};
+môi trường giữa được đánh chỉ số \eqref{e:middle}.
 
-An equation following the end of the \verb"subequations" environment
-should revert to normal numbering:
+%% An equation following the end of the \verb"subequations" environment
+%% should revert to normal numbering:
+\medskip
+Phương trình theo ngay sau môi trường \env{subequations} sẽ được
+đánh số theo cách tự nhiên:
 \begin{equation}\label{e:check}
 H<K
 \end{equation}
-A check on the labeling: that was equation~\eqref{e:check}.
+%A check on the labeling: that was equation~\eqref{e:check}.
+Thử kiểm tra lại việc đánh nhán: phương trình trên là \eqref{e:check}.
 
-The sub-numbered equations can be spread out through the text, like
-this:
+%% The sub-numbered equations can be spread out through the text, like
+%% this:
+\medskip
+Bên trong môi trường \env{subequations} có thể xen kẽ các môi trường
+phương trình và \verb"\text", nội dung khác. Ví dụ
 \begin{subequations}
 \begin{equation}
 A=B
 \end{equation}
-The \verb"subequations" environment can span arbitrary text between
-subsidiary equations. The only restriction is that if there are any
-numbered equations inside the \verb"subequations" environment that break
-out of the subequation numbering sequence, they would have to be handled
-specially.
+%% The \verb"subequations" environment can span arbitrary text between
+%% subsidiary equations. The only restriction is that if there are any
+%% numbered equations inside the \verb"subequations" environment that break
+%% out of the subequation numbering sequence, they would have to be handled
+%% specially.
+Hạn chế duy nhất là các môi trường bên trong \env{subequations} được đánh
+số tuần tự, do đó, nếu muốn có một chỉ số khác, bạn phải xử lý riêng.
 \begin{equation}
 D=C \label{e:newmiddle}
 \end{equation}
-More arbitrary text.
+Đây là phần nội dung khác bên trong môi trường \env{subequations}.
 \begin{equation}
 E=F
 \end{equation}
 \end{subequations}
-Label check: the middle one was \eqref{e:newmiddle}
+%Label check: the middle one was \eqref{e:newmiddle}
+Kiểm tra việc đánh nhãn: phương trình giữa là \eqref{e:newmiddle}.
 
-A final equation for a numbering check.
+%A final equation for a numbering check.
+Phương trình theo sau môi trường \env{equations} ở trên:
 \begin{equation}\label{e:final}
 G=H
 \end{equation}
-That equation was labeled as \eqref{e:final}.
+%That equation was labeled as \eqref{e:final}.
+Phương trình này được đánh nhãn \eqref{e:final}.
 
-\section{Tests of \env{align}, \env{gather}, and other
-AMS-\protect\LaTeX{} environments}
+%% \section{Tests of \env{align}, \env{gather}, and other
+%% AMS-\protect\LaTeX{} environments}
+\subsection{Kiểm tra với các môi trường khác}
 
-The \env{align} environment:
+
+%% The \env{align} environment:
+Sau đây là môi trường \env{align}:
 \begin{subequations}
 \begin{align}
 \label{align:a}A+B&=B+A\\
@@ -154,10 +148,13 @@ The \env{align} environment:
 \label{align:c}E&=F
 \end{align}
 \end{subequations}
-Label check: that was \eqref{align:a}, \eqref{align:b}, and
+%Label check: that was \eqref{align:a}, \eqref{align:b}, and
+Các nhãn đã được dùng lần lượt là \eqref{align:a}, \eqref{align:b} và
 \eqref{align:c}.
 
-The \env{align} environment again:
+\medskip
+%The \env{align} environment again:
+Cùng với môi trường \env{align} lần nữa:
 \begin{subequations}
 \begin{align}
 \label{xalign:a}A+B&=B&     B&=B+A\\
@@ -165,11 +162,17 @@ The \env{align} environment again:
 \label{xalign:c}E&=F&       E'&=F'
 \end{align}
 \end{subequations}
-Label check: that was \eqref{xalign:a}, \eqref{xalign:b}, and
+%Label check: that was 
+Các nhãn vừa được dùng là
+\eqref{xalign:a}, \eqref{xalign:b}, %and
 \eqref{xalign:c}.
 
-The \env{gather} environment. For the third line we refer to one of the
-numbers in the first \env{align} structure.
+\medskip
+%% The \env{gather} environment. For the third line we refer to one of the
+%% numbers in the first \env{align} structure.
+Bây giờ ta kiểm tra với môi trường \env{gather}.
+Ở phương trình thứ ba, ta tham khảo đến một trong các phương trình
+đã kiểm tra ở trên với môi trường \env{align}.
 \begin{subequations}
 \begin{gather}
 \label{gather:a}A+B=B\\
@@ -177,12 +180,18 @@ numbers in the first \env{align} structure.
 \tag{\ref{align:a}$'$}\label{gather:c}E=F
 \end{gather}
 \end{subequations}
-Label check: that was \eqref{gather:a},
-\eqref{gather:b}, and
+%Label check: that was
+Các nhãn vừa được dùng:
+ \eqref{gather:a},
+\eqref{gather:b}, và
 \eqref{gather:c}.
 
-The next \env{subequations} environment encompasses two separate
-equations. A \env{split} environment:
+%% The next \env{subequations} environment encompasses two separate
+%% equations. A \env{split} environment:
+\medskip
+Tiếp theo, môi trường \env{subequations} được kiểm tra với
+hai cách bố trí phương trình khác nhau. Đầu tiên là môi trường
+\env{split}
 \begin{subequations}
 \begin{equation}
 \label{split:x}
@@ -191,12 +200,13 @@ A&=B+C+F\\
 &=G
 \end{split}
 \end{equation}
-and a \env{multline} environment:
+%and a \env{multline} environment:
+và bây giờ là môi trường \env{multline}:
 \begin{multline}\label{multline:x}
 A[B]C[D]E[F]G[[H[I]J[K]L[M]N]]=\\
 H[I]J[K]L[M]N[O]P[Q]R[S]T[U]V[W]X[Y]Z
 \end{multline}
 \end{subequations}
-Label check: That was \eqref{split:x} and \eqref{multline:x}.
-
+%Label check: That was \eqref{split:x} and \eqref{multline:x}.
+Các nhãn được dùng là \eqref{split:x} và \eqref{multline:x}
 \end{document}
