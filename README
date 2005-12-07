@@ -21,7 +21,7 @@ USER's GUIDE for the AMSMATH package (version 2.0)
 	THANKS
 	amsldoc-vn.pdf (compiled work)
 	amsldoc-vn-print.pdf (compiled work, printable version)
-	subeqn-vn.pdf
+	subeqn-vn.pdf (test `subequation numbering' features)
 	src/
 	src/header.tex
 	src/amsldoc-vn.tex

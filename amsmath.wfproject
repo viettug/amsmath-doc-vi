@@ -1,14 +1,11 @@
 name: AMSDOC
-files: /home/users/kyanh/tex/doc/amsmath-doc-vi/subeqn-vi.tex
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/testmath.tex
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/header.tex
-files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi-print.tex
-files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi.tex
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/THANKS
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/README
 files: /home/users/kyanh/tex/doc/amsmath-doc-vi/Makefile
 basedir: /home/users/kyanh/tex/doc/amsmath-doc-vi/
-basefile: amsldoc-vi.tex
+basefile: amsldoc-vn.tex
 template: 
 view_bars: 144
 word_wrap: 0
@@ -24,14 +21,14 @@ searchlist: hyperref
 searchlist: ifpdf
 replacelist: \LaTeX{}
 replacelist: nhãn
-recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/subeqn-vi.tex
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/testmath.tex
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/header.tex
-recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi-print.tex
-recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi.tex
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/THANKS
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/README
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/Makefile
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/subeqn-vi.tex
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi-print.tex
+recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/amsldoc-vi.tex
 recent_files: /home/users/kyanh/tex/doc/amsmath-doc-vi/subeqn.tex
 recent_files: /home/users/kyanh/tex/doc/sectionbox/example/sectionboxexample.tex
 recent_files: /home/users/kyanh/tex/T5-accents.tex

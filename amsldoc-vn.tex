@@ -39,6 +39,8 @@
 
 \pagestyle{headings}
 
+\makeindex
+
 \begin{document}
 
 % ----------------------------------------------------------------------
@@ -334,7 +336,7 @@ Gói \pkg{amsmath} có các tùy chọn sau đây:
 Đánh số phương trình\index{equation numbers!vertical placement}
 bằng cách đặt chỉ số canh giữa theo chiều cao của phương trình.
 
-\item[\opt{tbtags}]
+\item[\opt{tbtags}]%\index{option!tbtags}
 %`Top-or-bottom tags': For a split equation, place
 %equation numbers\index{equation numbers!vertical placement} level with
 %the last (resp.\@ first) line, if numbers are on the right (resp.\@
@@ -342,7 +344,7 @@ bằng cách đặt chỉ số canh giữa theo chiều cao của phương trìn
 `Top-or-bottom tags': Đặt chỉ số của phương trình ở phía bên phải,
 dòng cuối cùng; hoặc ở phía bên trái, dòng đầu tiên.
 
-\item[\opt{sumlimits}] (mặc định)
+\item[\opt{sumlimits}] (mặc định)%\index{option!submlimits}
 % Place the subscripts and
 % superscripts\index{subscripts and superscripts!placement}\relax
 % \index{limits|see{subscripts and superscripts}} of summation symbols
@@ -354,20 +356,21 @@ dòng cuối cùng; hoặc ở phía bên trái, dòng đầu tiên.
 đến các ký hiệu cùng loại\mdash $\prod$, $\coprod$, $\bigotimes$,
 $\bigoplus$,...\mdash (nhưng ký hiệu tích phân thì không; xem dưới đây)
 
-\item[\opt{nosumlimits}]
+\item[\opt{nosumlimits}]%\index{option!nosumlimits}
 % Always place the subscripts and superscripts of
 % summation-type symbols to the side, even in displayed equations.
 Luôn đặt chỉ số trên và chỉ số dưới của các ký hiệu dạng tổng ($\sum$, $\prod$,...)
 ở bên cạnh, ngay cả trong công thức riêng dòng. Ví dụ $\sum_0^1$.
 
-\item[\opt{intlimits}]
+\item[\opt{intlimits}]%\index{option!intlimits}
 % Like \opt{sumlimits}, but for
 % integral\index{integrals!placement of limits} symbols.
 Tương tự như \opt{sumlimits}, nhưng cho ký hiệu tích phân.
 
-\item[\opt{nointlimits}] (mặc định) Ngược với \opt{intlimits}.
+\item[\opt{nointlimits}] (mặc định)%\index{option!nointlimits}
+Ngược với \opt{intlimits}.
 
-\item[\opt{namelimits}] (mặc định)
+\item[\opt{namelimits}] (mặc định)%\index{option!namelimits}
 % Like \opt{sumlimits}, but for certain
 % `operator names' such as $\det$, $\inf$, $\lim$, $\max$, $\min$, that
 % traditionally have subscripts \index{subscripts and
@@ -378,7 +381,7 @@ $\det$, $\inf$, $\lim$, $\max$, $\min$;
 các toán tử này theo truyền thống thường có chỉ số đặt bên dưới toán tử
 (chế độ công thức riêng dòng).
 
-\item[\opt{nonamelimits}] Ngược với \opt{namelimits}.
+\item[\opt{nonamelimits}] Ngược với \opt{namelimits}.%\index{option!nonamelimits}
 
 % To use one of these package options, put the option name in the optional
 % argument of the \cn{usepackage} command\mdash e.g.,
@@ -389,16 +392,16 @@ các toán tử này theo truyền thống thường có chỉ số đặt bên 
 % \cn{documentclass} command, and thus need not be repeated in the option
 % list of the \cn{usepackage}|{amsmath}| statement.
 
-\item[\opt{leqno}]
+\item[\opt{leqno}]%\index{option!leqno}
 % Place equation numbers on the left.\index{equation
 % numbers!left or right placement}
 Đặt chỉ số phương trình bên trái.
 
-\item[\opt{reqno}]
+\item[\opt{reqno}]%\index{option!reqno}
 % Place equation numbers on the right.
 Đặt chỉ số phương trình bên phải.
 
-\item[\opt{fleqn}]
+\item[\opt{fleqn}]%\index{option!fleqn}
 % Position equations at a fixed indent from the left
 % margin rather than centered in the text column.\index{displayed
 % equations!centering}
@@ -1210,7 +1213,8 @@ Chú ý là, nếu bạn đặt nhãn tham chiếu (|label|) ngay sau
 \verb/\begin{subequations}/, việc tham chiếu bằng \cn{ref}
 đến nhãn đó sẽ cho ra, chẳng hạn, 4.9, chứ không phải là 4.9a.
 Vui lòng xem tài liệu \fn{subeqn.pdf} và mã nguồn \fn{subeqn.tex}
-để có các ví dụ về việc dùng môi trường này.
+để có các ví dụ về việc dùng môi trường này. (Bản tiếng Việt tương ứng
+là \fn{subeqn-vn.pdf} và \fn{subeqn-vn.tex}.)
 
 % The counters used by the subequations
 % environment are \verb/parentequation/ and \verb/equation/ and
@@ -2374,7 +2378,7 @@ sẽ cho các đường-ngang-kép và đường-đứng-kép. Một \qq{mũi t�
 % \cn{mathbb} for blackboard bold, \cn{mathfrak} for Fraktur, and
 % \cn{mathscr} for Euler script are available through the packages
 % \pkg{amsfonts} and \pkg{euscript} (distributed separately).
-Mọi vấn đề về |font| có thể tìm thấy trong hướng dẫn (\fn{fntguide.tex})
+Mọi vấn đề về |font| có thể tìm thấy trong (\fn{fntguide.tex})
 hoặc \booktitle{The \LaTeX{} Companion} \cite{tlc}.
 
 \medskip
@@ -2571,7 +2575,8 @@ bản năm 1997 hoặc cao hơn.
 %\chapter{Error messages and output problems}
 \chapter{Lỗi thường gặp khi dùng gói \pkg{amsmath}}
 
-\section{General remarks}
+%% \section{General remarks}
+\section{Ghi chú}
 
 %% This is a supplement to Chapter~8 of the \LaTeX{} manual \cite{lamport} (first
 %% edition: Chapter~6). For the reader's convenience, the set of error
@@ -3216,8 +3221,6 @@ Amer. Math. Soc., Providence, RI, 1990.
 
 \end{thebibliography}
 
-%\begin{theindex}
-
-%\end{theindex}
+\IfFileExists{amsldoc-vn.ind}{\input amsldoc-vn.ind}{}
 
 \end{document}

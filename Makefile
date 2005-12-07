@@ -10,7 +10,10 @@ finalflag:
 	@echo '' > finalized
 
 latex:
-	@latex $(DOC)
+	@latex -src-specials $(DOC)
+
+pdf:
+	@pdflatex -src-specials $(DOC)
 
 doc: clean finalflag
 	@pdflatex $(DOC)
@@ -19,7 +22,8 @@ doc: clean finalflag
 	@pdflatex $(DOC)
 	@pdflatex $(DOC)-print
 	@pdflatex $(DOC)-print
-	@pdflatex $(TESTA)
+	@latex $(TESTA)
+	@latex $(TESTA)
 	@pdflatex $(TESTA)
 	@rm -f finalized
 
@@ -38,3 +42,13 @@ dist:
 		./src/* \
 		THANKS README COPYING \
 		$(TESTA).pdf $(DOC).pdf $(DOC)-print.pdf
+
+index:
+	@sed \
+		-e 's/|hyperpage//g' \
+		-e 's/package/(gói)/g' \
+		-e 's/option/(tuỳ chọn)/g' \
+		-e 's/environment/(môi trường)/g' \
+		$(DOC).idx \
+	> $(DOC).jdx
+	@makeindex -o $(DOC).ind $(DOC).jdx
