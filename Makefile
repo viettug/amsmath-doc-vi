@@ -1,6 +1,6 @@
 # Makefile for generating PDF files (final version)
 
-DOC = amsldoc-vi
+DOC = amsldoc-vn
 VERSION = `gawk -F '=' '{print $$2}' $(DOC).ktvnum`
 
 default: doc
@@ -25,9 +25,9 @@ cleanall: clean
 	@rm -frv *.pdf *~ ./amsldoc-vi/
 
 distro:
-	@mkdir -p ./amsldoc-vi/src
+	@mkdir -p ./amsldoc-vn/src
 	@mkdir -p archive
 	@rm -f archive/$(DOC)-$(VERSION).tgz
-	@cp README TODO THANKS *.pdf ./amsldoc-vi
-	@cp header.tex amsldoc-*.tex Makefile ./amsldoc-vi/src/
-	@tar cfvz ./archive/$(DOC)-$(VERSION).tgz ./amsldoc-vi
+	@cp README TODO THANKS *.pdf ./amsldoc-vn
+	@cp header.tex amsldoc-*.tex Makefile ./amsldoc-vn/src/
+	@tar cfvz ./archive/$(DOC)-$(VERSION).tgz ./amsldoc-vn

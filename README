@@ -11,6 +11,7 @@ USER's GUIDE for the AMSMATH package (version 2.0)
 
 * The latest version of this work can be found at:
 	http://download.viettug.org/mirror1.php?files=ams
+	http://download.viettug.org/mirror2.php?files=ams
 
 * Please report any bugs, suggestions to kyanh <kyanh@o2.pl>
 
@@ -18,15 +19,15 @@ USER's GUIDE for the AMSMATH package (version 2.0)
 	README (this file)
 	TODO
 	THANKS
-	amsldoc-vi.pdf (compiled work)
-	amsldoc-vi-print.pdf (compiled work, printable version)
-	subeqn-vi.pdf
+	amsldoc-vn.pdf (compiled work)
+	amsldoc-vn-print.pdf (compiled work, printable version)
+	subeqn-vn.pdf
 	src/
 	src/header.tex
-	src/amsldoc-vi.tex
-	src/amsldoc-vi-print.tex
-	src/subeqn-vi.tex
+	src/amsldoc-vn.tex
+	src/amsldoc-vn-print.tex
+	src/subeqn-vn.tex
 	src/Makefile
 
 ---
-kyanh [2004/11/04, 2005/11/17]
+kyanh
