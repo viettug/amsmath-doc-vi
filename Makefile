@@ -17,19 +17,23 @@ pdf:
 	@pdflatex -src-specials $(DOC)
 
 doc: clean finalflag latex index
-	@pdflatex $(DOC)
-	@pdflatex $(DOC)
-	@thumbpdf $(DOC).pdf
-	@pdflatex $(DOC)
-	@pdflatex $(DOC)-print
-	@pdflatex $(DOC)-print
+# 	@pdflatex $(DOC)
+# 	@pdflatex $(DOC)
+# 	@thumbpdf $(DOC).pdf
+# 	@pdflatex $(DOC)
+# 	@pdflatex $(DOC)-print
+# 	@pdflatex $(DOC)-print
+	@latex $(DOC)
+	@latex $(DOC)
+	@dvips $(DOC).dvi
+	@ps2pdf $(DOC).ps
 	@latex $(TESTA)
 	@latex $(TESTA)
 	@pdflatex $(TESTA)
 	@rm -f finalized
 
 clean:
-	@rm -fv finalized *.{tpt,out,log,idx,aux,dvi,bbl,blg,toc,idx,tps,ps,ilg,tcp,ind,thm} *~
+	@rm -fv finalized *.{tpt,log,idx,aux,dvi,bbl,blg,toc,idx,tps,ps,ilg,tcp,ind,thm} *~
 
 cleanall: clean
 	@rm -frv *.pdf *~ ./src/*
@@ -45,11 +49,13 @@ dist:
 		$(TESTA).pdf $(DOC).pdf $(DOC)-print.pdf
 
 index:
-	@sed \
-		-e 's/|hyperpage//g' \
-		-e 's/package/(gói)/g' \
-		-e 's/option/(tuỳ chọn)/g' \
-		-e 's/environment/(môi trường)/g' \
-		$(DOC).idx \
-	> $(DOC).jdx
+	@if [ -r $(DOC).idx ]; then \
+		 sed \
+			-e 's/|hyperpage//g' \
+			-e 's/package/(gói)/g' \
+			-e 's/option/(tuỳ chọn)/g' \
+			-e 's/environment/(môi trường)/g' \
+			$(DOC).idx \
+		> $(DOC).jdx ; \
+	fi
 	@makeindex -o $(DOC).ind $(DOC).jdx
