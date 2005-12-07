@@ -17,12 +17,12 @@ USER's GUIDE for the AMSMATH package (version 2.0)
 
 * File list
 	README (this file)
-	TODO
 	THANKS
 	amsldoc-vn.pdf (compiled work)
 	amsldoc-vn-print.pdf (compiled work, printable version)
 	subeqn-vn.pdf (test `subequation numbering' features)
 	src/
+	src/TODO
 	src/header.tex
 	src/amsldoc-vn.tex
 	src/amsldoc-vn-print.tex

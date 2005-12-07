@@ -42,7 +42,7 @@ dist:
 	@mkdir -p ./src
 	@mkdir -p distro
 	@rm -f distro/$(DOC)-$(VERSION).tgz
-	@cp TODO README.src $(DOC).ktvnum amsldoc-*.tex $(TESTA).tex header.tex Makefile ./src
+	@cp TODO $(DOC).ktvnum amsldoc-*.tex $(TESTA).tex header.tex Makefile ./src
 	@tar cfvz ./distro/$(DOC)-$(VERSION).tgz \
 		./src/* \
 		THANKS README COPYING \
