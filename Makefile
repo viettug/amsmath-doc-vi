@@ -10,12 +10,13 @@ finalflag:
 	@echo '' > finalized
 
 latex:
+	@latex $(DOC)
 	@latex -src-specials $(DOC)
 
 pdf:
 	@pdflatex -src-specials $(DOC)
 
-doc: clean finalflag
+doc: clean finalflag latex index
 	@pdflatex $(DOC)
 	@pdflatex $(DOC)
 	@thumbpdf $(DOC).pdf
