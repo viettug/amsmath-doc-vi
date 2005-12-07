@@ -35,14 +35,18 @@
 	\IfFileExists{finalized}%
 	{
 		\newcount\buildnum
-		\input amsldoc-vi.ktvnum	
+		\input\jobname.ktvnum	
 	}
 	{
 		\usepackage{ktv-buildnum}}%
 	}
 {
 	\newcount\buildnum
-	\buildnum=9999
+	\IfFileExists{\jobname.ktvnum}{
+		\input\jobname.ktvnum
+	}{
+		\buildnum=9999
+	}
 }
 % =====================================================================
 

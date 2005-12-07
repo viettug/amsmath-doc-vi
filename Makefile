@@ -2,32 +2,38 @@
 
 DOC = amsldoc-vn
 VERSION = `gawk -F '=' '{print $$2}' $(DOC).ktvnum`
+TESTA = subeqn-vn
 
-default: doc
+default: latex
 
 finalflag:
 	@echo '' > finalized
 
+latex:
+	@latex $(DOC)
+
 doc: clean finalflag
 	@pdflatex $(DOC)
 	@pdflatex $(DOC)
-# Thanks to Reinhard Kotucha	
 	@thumbpdf $(DOC).pdf
 	@pdflatex $(DOC)
 	@pdflatex $(DOC)-print
 	@pdflatex $(DOC)-print
+	@pdflatex $(TESTA)
+	@pdflatex $(TESTA)
 	@rm -f finalized
-	
+
 clean:
 	@rm -fv finalized *.{tpt,out,log,idx,aux,dvi,bbl,blg,toc,idx,tps,ps,ilg,tcp,ind,thm} *~
-	
-cleanall: clean
-	@rm -frv *.pdf *~ ./amsldoc-vi/
 
-distro:
-	@mkdir -p ./amsldoc-vn/src
-	@mkdir -p archive
-	@rm -f archive/$(DOC)-$(VERSION).tgz
-	@cp README TODO THANKS *.pdf ./amsldoc-vn
-	@cp header.tex amsldoc-*.tex Makefile ./amsldoc-vn/src/
-	@tar cfvz ./archive/$(DOC)-$(VERSION).tgz ./amsldoc-vn
+cleanall: clean
+	@rm -frv *.pdf *~ ./src/*
+
+dist:
+	@mkdir -p ./src
+	@mkdir -p distro
+	@rm -f distro/$(DOC)-$(VERSION).tgz
+	@cp TODO README.src $(DOC).ktvnum amsldoc-*.tex $(TESTA).tex header.tex Makefile ./src
+	@tar cfvz ./distro/$(DOC)-$(VERSION).tgz \
+		./src/* \
+		README COPYING $(TESTA).pdf $(DOC).pdf $(DOC)-print.pdf
