@@ -36,4 +36,5 @@ dist:
 	@cp TODO README.src $(DOC).ktvnum amsldoc-*.tex $(TESTA).tex header.tex Makefile ./src
 	@tar cfvz ./distro/$(DOC)-$(VERSION).tgz \
 		./src/* \
-		README COPYING $(TESTA).pdf $(DOC).pdf $(DOC)-print.pdf
+		THANKS README COPYING \
+		$(TESTA).pdf $(DOC).pdf $(DOC)-print.pdf
