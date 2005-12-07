@@ -27,6 +27,12 @@ doc: clean finalflag latex index
 	@latex $(DOC)
 	@dvips $(DOC).dvi
 	@ps2pdf $(DOC).ps
+#
+	@latex $(DOC)-print
+	@latex $(DOC)-print
+	@dvips $(DOC)-print.dvi
+	@ps2pdf $(DOC)-print.ps
+#	
 	@latex $(TESTA)
 	@latex $(TESTA)
 	@pdflatex $(TESTA)
