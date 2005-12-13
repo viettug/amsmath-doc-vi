@@ -1,8 +1,10 @@
+# $Id$ #
 # Makefile for generating PDF files (final version)
 
 DOC = amsldoc-vn
 VERSION = `gawk -F '=' '{print $$2}' $(DOC).ktvnum`
 TESTA = subeqn-vn
+TESTB = subeqn-tcvn
 
 default: latex
 
@@ -14,7 +16,7 @@ latex:
 	@latex -src-specials $(DOC)
 
 pdf:
-	@pdflatex -src-specials $(DOC)
+	@pdflatex $(DOC)
 
 doc: clean finalflag latex index
 # 	@pdflatex $(DOC)
@@ -42,13 +44,22 @@ clean:
 	@rm -fv finalized *.{tpt,log,idx,aux,dvi,bbl,blg,toc,idx,tps,ps,ilg,tcp,ind,thm} *~
 
 cleanall: clean
-	@rm -frv *.pdf *~ ./src/*
+	@rm -frv *.pdf *~ ./src/* *.jdx *.out
 
 dist:
 	@mkdir -p ./src
 	@mkdir -p distro
 	@rm -f distro/$(DOC)-$(VERSION).tgz
-	@cp TODO $(DOC).ktvnum amsldoc-*.tex $(TESTA).tex header.tex Makefile ./src
+	@sed -e 's/utf8x/tcvn/g' $(TESTA).tex >tmp.tex
+	@uvconv --from UTF-8 --to TCVN3 tmp.tex > $(TESTB).tex
+	@rm tmp.tex
+	@cp TODO $(DOC).ktvnum \
+		amsldoc-*.tex \
+		$(TESTA).tex \
+		$(TESTB).tex \
+		header.tex \
+		Makefile \
+		./src
 	@tar cfvz ./distro/$(DOC)-$(VERSION).tgz \
 		./src/* \
 		THANKS README COPYING \
