@@ -67,7 +67,7 @@ dist:
 
 index:
 	@if [ -r $(DOC).idx ]; then \
-		 sed \
+		sed \
 			-e 's/package/(gói)/g' \
 			-e 's/option/(tuỳ chọn)/g' \
 			-e 's/environment/(môi trường)/g' \
