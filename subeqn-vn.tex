@@ -1,4 +1,4 @@
-%% $Id$ %%
+%% $Id: subeqn-vn.tex 1584 2005-12-13 15:38:49Z kyanh $ %%
 
 \documentclass[fleqn]{article}
 
@@ -210,4 +210,44 @@ H[I]J[K]L[M]N[O]P[Q]R[S]T[U]V[W]X[Y]Z
 \end{subequations}
 %Label check: That was \eqref{split:x} and \eqref{multline:x}.
 Các nhãn được dùng là \eqref{split:x} và \eqref{multline:x}
+
+\numberwithin{equation}{section}
+\section{test1}
+
+\subsection{test11}
+\begin{equation}
+  \int_1^2f(x) -= dx
+\end{equation}
+\begin{equation}
+  \int_1^2f(x) -= dx
+\end{equation}
+
+\subsection{test12}
+\begin{equation}
+  \int_1^2f(x) -= dx
+\end{equation}
+\begin{equation}
+  \int_1^2f(x) -= dx
+\end{equation}
+
+\section{test1}
+
+\numberwithin{equation}{subsection}
+
+\subsection{test11}
+\begin{equation}
+  \int_1^2f(x) -= dx
+\end{equation}
+\begin{equation}
+  \int_1^2f(x) -= dx
+\end{equation}
+
+\subsection{test12}
+\begin{equation}
+  \int_1^2f(x) -= dx
+\end{equation}
+\begin{equation}
+  \int_1^2f(x) -= dx
+\end{equation}
+
 \end{document}
